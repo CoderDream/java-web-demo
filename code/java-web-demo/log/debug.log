@@ -1626,4 +1626,9 @@
  2017-05-30 13:39:18,509 DEBUG [main]: Processing.../C:/Users/CoderDream/Documents/GitHub/java-web-demo/code/java-web-demo/target/test-classes/挖掘机_20170529.xlsx
  2017-05-30 13:39:22,911 DEBUG [main]: Size: 	155
  2017-05-30 13:39:22,919 DEBUG [main]: settlingChargeMap size	4
+ 2017-05-30 18:54:46,811 DEBUG [main]: getSettlingChargeByLocation begin
+ 2017-05-30 18:54:46,825 DEBUG [main]: getExcavatorList begin
+ 2017-05-30 18:54:46,871 DEBUG [main]: Processing.../C:/Users/CoderDream/Documents/GitHub/java-web-demo/code/java-web-demo/target/test-classes/挖掘机_20170529.xlsx
+ 2017-05-30 18:54:53,300 DEBUG [main]: Size: 	155
+ 2017-05-30 18:55:08,465 DEBUG [main]: settlingChargeMap size	4
  
