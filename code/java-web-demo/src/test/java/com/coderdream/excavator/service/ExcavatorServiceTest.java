@@ -298,4 +298,85 @@ public class ExcavatorServiceTest {
 		logger.debug("averageDailyGrossIncome\t" + averageDailyGrossIncome);
 	}
 
+	@Test
+	public void testGetSettlingChargeByLocation_01() {
+		String path = fileFolder + dataFileName;
+		String location = Constants.LOCATION_ONE;
+		Map<String, Double> settlingChargeMap = ExcavatorService.getSettlingChargeByLocation(path, location);
+
+		logger.debug("settlingChargeMap size\t" + settlingChargeMap.size());
+		for (String workDate : settlingChargeMap.keySet()) {
+			Double dailyIncome = settlingChargeMap.get(workDate);
+			logger.debug(workDate + "\t" + dailyIncome);
+		}
+	}
+	
+	@Test
+	public void testGetSettlingChargeByLocation_02() {
+		String path = fileFolder + dataFileName;
+		String location = Constants.LOCATION_TWO;
+		Map<String, Double> settlingChargeMap = ExcavatorService.getSettlingChargeByLocation(path, location);
+
+		logger.debug("settlingChargeMap size\t" + settlingChargeMap.size());
+		for (String workDate : settlingChargeMap.keySet()) {
+			Double dailyIncome = settlingChargeMap.get(workDate);
+			logger.debug(workDate + "\t" + dailyIncome);
+		}
+	}
+	
+	@Test
+	public void testGetSettlingChargeByLocation_03() {
+		String path = fileFolder + dataFileName;
+		String location = Constants.LOCATION_THREE;
+		Map<String, Double> settlingChargeMap = ExcavatorService.getSettlingChargeByLocation(path, location);
+
+		logger.debug("settlingChargeMap size\t" + settlingChargeMap.size());
+		for (String workDate : settlingChargeMap.keySet()) {
+			Double dailyIncome = settlingChargeMap.get(workDate);
+			logger.debug(workDate + "\t" + dailyIncome);
+		}
+	}
+	
+	@Test
+	public void testGetSettlingChargeAmountByLocation_01() {
+		String path = fileFolder + dataFileName;
+		String location = Constants.LOCATION_ONE;
+		Map<String, String> settlingChargeMap = ExcavatorService.getSettlingChargeAmountByLocation(path, location);
+
+		logger.debug("settlingChargeMap size\t" + settlingChargeMap.size());
+		for (String workDate : settlingChargeMap.keySet()) {
+			String dailyIncome = settlingChargeMap.get(workDate);
+			logger.debug(workDate + "\t" + dailyIncome);
+		}
+	}
+	
+	@Test
+	public void testGetSettlingChargeAmountByLocation_02() {
+		String path = fileFolder + dataFileName;
+		String location = Constants.LOCATION_TWO;
+		Map<String, String> settlingChargeMap = ExcavatorService.getSettlingChargeAmountByLocation(path, location);
+
+		logger.debug("settlingChargeMap size\t" + settlingChargeMap.size());
+		for (String workDate : settlingChargeMap.keySet()) {
+			String dailyIncome = settlingChargeMap.get(workDate);
+			//logger.debug(workDate + "\t" + dailyIncome);
+			System.out.println(workDate + "\t" + dailyIncome);
+		}
+	}
+	
+	@Test
+	public void testGetSettlingChargeAmountByLocation_03() {
+		String path = fileFolder + dataFileName;
+		String location = Constants.LOCATION_THREE;
+		Map<String, String> settlingChargeMap = ExcavatorService.getSettlingChargeAmountByLocation(path, location);
+
+		logger.debug("settlingChargeMap size\t" + settlingChargeMap.size());
+		for (String workDate : settlingChargeMap.keySet()) {
+			String dailyIncome = settlingChargeMap.get(workDate);
+			logger.debug(workDate + "\t" + dailyIncome);
+		}
+	}
+	
+	
+	
 }

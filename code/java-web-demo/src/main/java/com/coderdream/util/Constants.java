@@ -8,7 +8,7 @@ public class Constants {
 	
 	public static String DATA_FILE_NAME = "Data11.xlsx";
 	
-	public static String EXCAVATOR_FILE_NAME = "挖掘机_20170524.xlsx";
+	public static String EXCAVATOR_FILE_NAME = "挖掘机_20170529.xlsx";
 	
 	public static String CATEGORY_OIL_FEE = "加油费";
 	
@@ -16,13 +16,26 @@ public class Constants {
 	
 	public static String CATEGORY_LOAD = "装车";
 	
+	public static String CATEGORY_LOAD_BIG = "大车";
+	
+	public static String CATEGORY_LOAD_SMALL = "小车";
+	
 	public static String CATEGORY_STAND_BY = "台班";
 	
+	public static String CATEGORY_START_FEE = "进场费";
+	
+	public static String CATEGORY_SETTLING_CHARGE = "结余";
+	
+	/** 四化建 */
 	public static String LOCATION_ONE = "四化建";
 	
+	/** 步行街 */
 	public static String LOCATION_TWO = "步行街";
 	
+	/** 南湖公园 */
 	public static String LOCATION_THREE = "南湖公园";
+	
+	public static String DECIMAL_FORMAT="###################.###########";
 
 	/** 项目统计开始时间 */
 	public static String PROJECT_START_DATE = "2017-01-01";

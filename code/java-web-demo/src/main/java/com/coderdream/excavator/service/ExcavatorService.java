@@ -1,7 +1,9 @@
 package com.coderdream.excavator.service;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -24,6 +26,68 @@ public class ExcavatorService {
 		logger.debug("getExcavatorList begin");
 		List<Excavator> excavatorList = null;
 		String sheetName = "Total";
+		// String sheetName = Constants.LOCATION_THREE;
+		try {
+			List<String[]> arrayList = ExcelUtil.readData(path, sheetName);
+			if (null != arrayList && 0 < arrayList.size()) {
+				excavatorList = new ArrayList<Excavator>();
+				logger.debug("Size: \t" + arrayList.size());
+			}
+			for (int i = 0; i < arrayList.size(); i++) {
+				Excavator excavator = new Excavator();
+				String[] arrayStr = arrayList.get(i);
+
+				/** 日期 */
+				String workDate = arrayStr[0];
+				/** 收入 */
+				Double income = arrayStr[1] == null ? new Double(0) : Double.valueOf(arrayStr[1]);
+				/** 支出 */
+				Double expend = arrayStr[2] == null ? new Double(0) : Double.valueOf(arrayStr[2]);
+				/** 类别 */
+				String category = arrayStr[3];
+				/** 工地 */
+				String location = arrayStr[4];
+				/** 备注 */
+				String comment = arrayStr[5];
+				/** 余额 */
+				Double balance = arrayStr[6] == null ? new Double(0) : Double.valueOf(arrayStr[6]);
+				/** 数量 */
+				Double amount = arrayStr[7] == null ? new Double(0) : Double.valueOf(arrayStr[7]);
+				/** 单价 */
+				Double unitPrice = arrayStr[8] == null ? new Double(0) : Double.valueOf(arrayStr[8]);
+				/** 去零 */
+				Double fraction = arrayStr[9] == null ? new Double(0) : Double.valueOf(arrayStr[9]);
+				/** 毛利率 */
+				Double grossProfitRate = arrayStr[10] == null ? new Double(0) : Double.valueOf(arrayStr[10]);
+				/** 毛利 */
+				Double grossProfit = new Double(0);
+
+				excavator.setWorkDate(workDate);
+				excavator.setIncome(income);
+				excavator.setExpend(expend);
+				excavator.setCategory(category);
+				excavator.setLocation(location);
+				excavator.setComment(comment);
+				excavator.setBalance(balance);
+				excavator.setAmount(amount);
+				excavator.setUnitPrice(unitPrice);
+				excavator.setFraction(fraction);
+				excavator.setGrossProfitRate(grossProfitRate);
+				excavator.setGrossProfit(grossProfit);
+				excavatorList.add(excavator);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return excavatorList;
+	}
+
+	public static List<Excavator> getExcavatorList(String path, String sheetName) {
+		logger.debug("getExcavatorList begin");
+		List<Excavator> excavatorList = null;
+		// String sheetName = "Total";
+		// String sheetName = Constants.LOCATION_THREE;
 		try {
 			List<String[]> arrayList = ExcelUtil.readData(path, sheetName);
 			if (null != arrayList && 0 < arrayList.size()) {
@@ -134,7 +198,7 @@ public class ExcavatorService {
 		Double outputRate = new Double(0);
 		Double gasFee = ExcavatorService.getSumGasFee(path, beginDateString, endDateString);
 		Double grossIncome = ExcavatorService.getSumGrossIncome(path, beginDateString, endDateString);
-		outputRate = MathUtil.setScale(grossIncome / gasFee, 2);// TODO
+		outputRate = MathUtil.setScale(grossIncome / gasFee, 2);
 		return outputRate;
 	}
 
@@ -224,7 +288,183 @@ public class ExcavatorService {
 		return grossProfit;
 	}
 
+	public static Double getStandByFeeByLocation(String path, String locationParam) {
+		logger.debug("getExcavatorList begin");
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+		Double standByFee = getStandByFeeByLocation(locationParam, excavatorList);
+
+		return standByFee;
+	}
+
+	public static Double getStandByFeeByLocation(String locationParam, List<Excavator> excavatorList) {
+		Double standByFee = new Double(0);
+		for (Excavator excavator : excavatorList) {
+			/** 工地 */
+			String location = excavator.getLocation();
+			if (null != location && !"".equals(locationParam) && location.equals(locationParam)) {
+				/** 收入 */
+				Double income = excavator.getIncome();
+
+				/** 类别 */
+				String category = excavator.getCategory();
+				if (Constants.CATEGORY_STAND_BY.equals(category)) {
+					standByFee += income;
+				}
+			} else {
+				// logger.debug(excavator.toString());
+			}
+		}
+		return standByFee;
+	}
+
+	public static Double getStandByFeeAmountByLocation(String locationParam, List<Excavator> excavatorList) {
+		Double standByFee = new Double(0);
+		for (Excavator excavator : excavatorList) {
+			/** 工地 */
+			String location = excavator.getLocation();
+			if (null != location && !"".equals(locationParam) && location.equals(locationParam)) {
+				/** 数量 */
+				Double amount = excavator.getAmount();
+
+				/** 类别 */
+				String category = excavator.getCategory();
+				if (Constants.CATEGORY_STAND_BY.equals(category)) {
+					standByFee += amount;
+				}
+			} else {
+				// logger.debug(excavator.toString());
+			}
+		}
+		return standByFee;
+	}
+
+	/**
+	 * @param path
+	 * @param locationParam
+	 * @return
+	 */
+	public static Double getStartFeeByLocation(String path, String locationParam) {
+
+		logger.debug("getStartFeeByLocation begin");
+
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+		Double startFee = getStartFeeByLocation(locationParam, excavatorList);
+
+		return startFee;
+	}
+
+	public static Double getStartFeeByLocation(String locationParam, List<Excavator> excavatorList) {
+		Double startFee = new Double(0);
+		for (Excavator excavator : excavatorList) {
+			/** 工地 */
+			String location = excavator.getLocation();
+			if (null != location && !"".equals(locationParam) && location.equals(locationParam)) {
+				/** 收入 */
+				Double income = excavator.getIncome();
+
+				/** 类别 */
+				String category = excavator.getCategory();
+				if (Constants.CATEGORY_START_FEE.equals(category)) {
+					startFee += income;
+				}
+			} else {
+				// logger.debug(excavator.toString());
+			}
+		}
+		return startFee;
+	}
+
 	public static Double getGrossProfitByLocation(String path, String locationParam) {
+		logger.debug("getExcavatorList begin");
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+		Double grossProfit = getGrossProfitByLocation(locationParam, excavatorList);
+		return grossProfit;
+	}
+
+	public static Double getGrossProfitByLocation(String locationParam, List<Excavator> excavatorList) {
+		Double grossProfit = new Double(0);
+		for (Excavator excavator : excavatorList) {
+			/** 工地 */
+			String location = excavator.getLocation();
+			if (null != location && !"".equals(locationParam) && location.equals(locationParam)) {
+				/** 收入 */
+				Double income = excavator.getIncome();
+
+				/** 类别 */
+				String category = excavator.getCategory();
+				if (Constants.CATEGORY_LOAD.equals(category)) {
+					grossProfit += income;
+				}
+			} else {
+				// logger.debug(excavator.toString());
+			}
+		}
+		return grossProfit;
+	}
+
+	public static Double[] getLoadAmountByLocation(String locationParam, List<Excavator> excavatorList) {
+		Double[] grossProfitArray = new Double[2];
+		grossProfitArray[0] = new Double(0);
+		grossProfitArray[1] = new Double(0);
+		for (Excavator excavator : excavatorList) {
+			/** 工地 */
+			String location = excavator.getLocation();
+			if (null != location && !"".equals(locationParam) && location.equals(locationParam)) {
+				/** 数量 */
+				Double amount = excavator.getAmount();
+
+				/** 备注 */
+				String comment = excavator.getComment();
+
+				/** 类别 */
+				String category = excavator.getCategory();
+				if (Constants.CATEGORY_LOAD.equals(category)) {
+					if (Constants.CATEGORY_LOAD_BIG.equals(comment)) {
+						grossProfitArray[0] += amount;
+					} else if (Constants.CATEGORY_LOAD_SMALL.equals(comment)) {
+						grossProfitArray[1] += amount;
+					}
+				}
+			} else {
+				// logger.debug(excavator.toString());
+			}
+		}
+		return grossProfitArray;
+	}
+
+	public static Double getOilFeeByLocation(String path, String locationParam) {
+
+		logger.debug("getExcavatorList begin");
+
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+
+		Double OilFee = getOilFeeByLocation(locationParam, excavatorList);
+
+		return OilFee;
+	}
+
+	public static Double getOilFeeByLocation(String locationParam, List<Excavator> excavatorList) {
+		Double OilFee = new Double(0);
+		for (Excavator excavator : excavatorList) {
+			/** 工地 */
+			String location = excavator.getLocation();
+			if (null != location && !"".equals(locationParam) && location.equals(locationParam)) {
+				/** 支出 */
+				Double expend = excavator.getExpend();
+
+				/** 类别 */
+				String category = excavator.getCategory();
+				if (Constants.CATEGORY_OIL_FEE.equals(category)) {
+					OilFee += expend;
+				}
+			} else {
+				// logger.debug(excavator.toString());
+			}
+		}
+		return OilFee;
+	}
+
+	public static Double getNetProfitByLocation(String path, String locationParam) {
 		Double grossProfit = new Double(0);
 		logger.debug("getExcavatorList begin");
 
@@ -253,6 +493,115 @@ public class ExcavatorService {
 		}
 
 		return grossProfit;
+	}
+
+	/**
+	 * <pre>
+	 *台班时间
+	 *进场费
+	 *装车
+	 *扣油费
+	 * </pre>
+	 * 
+	 * @param path
+	 * @param locationParam
+	 * @return
+	 */
+	public static Map<String, Double> getSettlingChargeByLocation(String path, String locationParam) {
+		Map<String, Double> settlingChargeMap = new LinkedHashMap<String, Double>();
+		logger.debug("getSettlingChargeByLocation begin"); // TODO
+
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+		// 台班费
+		String feeType1 = Constants.CATEGORY_STAND_BY;
+		Double standByFee = getStandByFeeByLocation(locationParam, excavatorList);
+		if (0 < standByFee) {
+			settlingChargeMap.put(feeType1, standByFee);
+		}
+
+		// 进场费
+		String feeType2 = Constants.CATEGORY_START_FEE;
+		Double startFee = getStartFeeByLocation(locationParam, excavatorList);
+		if (0 < startFee) {
+			settlingChargeMap.put(feeType2, startFee);
+		}
+
+		// 装车
+		String feeType3 = Constants.CATEGORY_LOAD;
+		Double grossProfit = getGrossProfitByLocation(locationParam, excavatorList);
+		settlingChargeMap.put(feeType3, grossProfit);
+
+		// 油费
+		String feeType4 = Constants.CATEGORY_OIL_FEE;
+		Double OilFee = getOilFeeByLocation(locationParam, excavatorList);
+		settlingChargeMap.put(feeType4, OilFee);
+
+		// 结余
+		String feeType5 = Constants.CATEGORY_SETTLING_CHARGE;
+		Double settlingCharge = standByFee + startFee + grossProfit - OilFee;
+		settlingChargeMap.put(feeType5, settlingCharge);
+
+		return settlingChargeMap;
+	}
+
+	/**
+	 * <pre>
+	 *台班时间
+	 *进场费
+	 *装车
+	 *扣油费
+	 * </pre>
+	 * 
+	 * @param path
+	 * @param locationParam
+	 * @return
+	 */
+	public static Map<String, String> getSettlingChargeAmountByLocation(String path, String locationParam) {
+		Map<String, String> settlingChargeMap = new LinkedHashMap<String, String>();
+		logger.debug("getSettlingChargeByLocation begin"); // TODO
+
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+
+		DecimalFormat decimalFormat = new DecimalFormat(Constants.DECIMAL_FORMAT);
+		// System.out.println(decimalFormat.format(number)); //12
+
+		// 台班费
+		String feeType1 = Constants.CATEGORY_STAND_BY;
+		Double standByFee = getStandByFeeAmountByLocation(locationParam, excavatorList);
+		if (0 < standByFee) {
+			settlingChargeMap.put(feeType1, decimalFormat.format(standByFee) + " 小时");
+		}
+
+		// 进场费
+		String feeType2 = Constants.CATEGORY_START_FEE;
+		Double startFee = getStartFeeByLocation(locationParam, excavatorList);
+		if (0 < startFee) {
+			settlingChargeMap.put(feeType2, decimalFormat.format(startFee) + "");
+		}
+
+		// 装车
+		String feeType3 = Constants.CATEGORY_LOAD;
+		Double[] grossProfitArray = getLoadAmountByLocation(locationParam, excavatorList);
+		if (0 < grossProfitArray[1]) {
+			settlingChargeMap.put(feeType3 + "(" + Constants.CATEGORY_LOAD_BIG + ")",
+					decimalFormat.format(grossProfitArray[0]));
+			settlingChargeMap.put(feeType3 + "(" + Constants.CATEGORY_LOAD_SMALL + ")",
+					decimalFormat.format(grossProfitArray[1]));
+		} else {
+			settlingChargeMap.put(feeType3, decimalFormat.format(grossProfitArray[0]));
+		}
+
+		// 油费
+		String feeType4 = Constants.CATEGORY_OIL_FEE;
+		Double OilFee = getOilFeeByLocation(locationParam, excavatorList);
+		settlingChargeMap.put(feeType4, decimalFormat.format(OilFee) + "");
+
+		// 结余
+		// String feeType5 = Constants.CATEGORY_SETTLING_CHARGE;
+		// Double settlingCharge = standByFee + startFee + grossProfit - OilFee;
+		// settlingChargeMap.put("5." + feeType5, settlingCharge);
+
+		return settlingChargeMap;
 	}
 
 	public static Double getAverageGrossProfitByLocation(String path, String locationParam) {
