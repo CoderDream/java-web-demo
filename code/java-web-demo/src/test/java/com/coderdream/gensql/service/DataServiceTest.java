@@ -13,12 +13,14 @@ import org.slf4j.LoggerFactory;
 import com.coderdream.gensql.bean.IsbgHumanMap;
 import com.coderdream.gensql.bean.IsbgProject;
 import com.coderdream.gensql.bean.MemberParticipate;
+import com.coderdream.gensql.bean.Menu;
 import com.coderdream.gensql.bean.PdrcBsmDispatch;
 import com.coderdream.gensql.bean.PdrcEnpPrize;
 import com.coderdream.gensql.bean.PdrcStaffManage;
 import com.coderdream.gensql.bean.PdrcTm;
 import com.coderdream.gensql.bean.PdrcTmSalary;
 import com.coderdream.gensql.bean.PmTmRelation;
+import com.coderdream.gensql.bean.Role;
 import com.coderdream.util.Constants;
 
 public class DataServiceTest {
@@ -55,7 +57,63 @@ public class DataServiceTest {
 			System.out.println(pdrcStaffManage);
 		}
 	}
-
+	
+	@Test
+	public void testGetPdrcStaffManageList_02() {
+		String path = fileFolder + "Data_20170531.xlsx";
+		String sheetName = "RC"; // TODO
+		DataService dataService = new DataService();
+		List<PdrcStaffManage> drcStaffManageList = dataService.getPdrcStaffManageList(path, sheetName);
+		System.out.println(drcStaffManageList.size());
+		for (PdrcStaffManage pdrcStaffManage : drcStaffManageList) {
+			System.out.println(pdrcStaffManage);
+		}
+	}	
+	
+	@Test
+	public void testGetRoleList_01() {
+		String path = fileFolder + "Data_20170531.xlsx";
+		String sheetName = "Role"; // TODO
+		List<Role> roleList = DataService.getRoleList(path, sheetName);
+		System.out.println(roleList.size());
+		for (Role role : roleList) {
+			System.out.println(role);
+		}
+	}
+	
+	@Test
+	public void testGetMenuList_01() {
+		String path = fileFolder + "Data_20170531.xlsx";
+		String sheetName = "Menu"; // TODO
+		List<Menu> menuList = DataService.getMenuList(path, sheetName);
+		System.out.println(menuList.size());
+		for (Menu menu : menuList) {
+			System.out.println(menu);
+		}
+	}
+	
+	
+	@Test
+	public void testGetWorkIdMenuNameMap_01() {
+		String path = fileFolder + "Data_20170531.xlsx";
+		String sheetName1 = "Role"; 
+		List<Role> roleList = DataService.getRoleList(path, sheetName1);
+		
+		String sheetName2 = "Menu"; 
+		List<Menu> menuList = DataService.getMenuList(path, sheetName2);
+		System.out.println(menuList.size());
+		
+		Map<String, List<String>> menuNameListMap = DataService.getWorkIdMenuNameMap(roleList, menuList);
+		
+		for (String key : menuNameListMap.keySet()) {
+			List<String> menuNameList = menuNameListMap.get(key);
+			for (String menuName : menuNameList) {
+				System.out.println(key + "\t\t" + menuName);
+			}
+		}
+	}
+	
+	
 	@Test
 	public void testGetIsbgProjectList() {
 		String path = fileFolder + dataFileName;

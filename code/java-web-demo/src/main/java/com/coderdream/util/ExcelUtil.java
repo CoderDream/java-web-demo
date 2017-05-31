@@ -137,7 +137,7 @@ public class ExcelUtil {
 
 		InputStream is = new FileInputStream(path);
 		XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
-		List<String[]> arrayList = new ArrayList<String[]>();
+		
 		// Read the Sheet
 		XSSFSheet xssfSheet = xssfWorkbook.getSheet(sheetName);
 		if (xssfSheet == null) {
@@ -145,6 +145,14 @@ public class ExcelUtil {
 			return null;
 		}
 
+		List<String[]> arrayList = readXSSFSheet(xssfSheet);
+
+		xssfWorkbook.close();
+		return arrayList;
+	}
+
+	private static List<String[]> readXSSFSheet(XSSFSheet xssfSheet) {
+		List<String[]> arrayList = new ArrayList<String[]>();
 		// Read the Row
 		for (int rowNum = 0; rowNum <= xssfSheet.getLastRowNum(); rowNum++) {
 			XSSFRow xssfRow = xssfSheet.getRow(rowNum);
@@ -170,8 +178,7 @@ public class ExcelUtil {
 				arrayList.add(strArray);
 			}
 		}
-
-		xssfWorkbook.close();
+		
 		return arrayList;
 	}
 
@@ -709,4 +716,6 @@ public class ExcelUtil {
 			}
 		}
 	}
+	
+	// PdrcStaffManage
 }

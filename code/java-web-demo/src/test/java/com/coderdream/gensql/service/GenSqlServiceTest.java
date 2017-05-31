@@ -63,6 +63,21 @@ public class GenSqlServiceTest {
 		String charsetName = "GBK";
 		GenSqlService.genSqlScriptFile(path, sheetName, idFlag, sqlFilePath, charsetName);
 	}
+	
+
+	@Test
+	public void testGenSqlScriptList_04() {
+		logger.debug(Common.PROCESSING + fileFolder);
+		String fileName = "Data_20170531.xlsx";
+		String sheetName = "PDRC_StaffManage";
+		String path = fileFolder + fileName;
+		String sqlFileName = sheetName + ".sql";
+		String sqlFilePath = fileFolder + sqlFileName;
+		// 是否自动生成ID
+		Boolean idFlag = true;
+		String charsetName = "GBK";
+		GenSqlService.genSqlScriptFile(path, sheetName, idFlag, sqlFilePath, charsetName);
+	}
 
 	@Test
 	public void testGenSqlScriptFileTotal_01() {
@@ -141,6 +156,80 @@ public class GenSqlServiceTest {
 
 		String charsetName = "GBK";
 		GenSqlService.genSqlScriptFileTotal(path, tableNameMap, sqlFilePath, charsetName);
+	}
+	
+	@Test
+	public void testGenSqlScriptFileTotal_02() {
+		logger.debug(Common.PROCESSING + fileFolder);
+		String fileName = "Data_20170531.xlsx";
+		String path = fileFolder + fileName;
+		String sqlFileName = "totalScript02.sql";
+
+		Map<String, Boolean> tableNameMap = new LinkedHashMap<String, Boolean>();
+		String sqlFilePath = fileFolder + sqlFileName;
+
+		String sheetName1 = "PDRC_RM";
+		// 是否自动生成ID
+		Boolean idFlag1 = true;
+		tableNameMap.put(sheetName1, idFlag1);
+
+		String sheetName2 = "PDRC_TM";
+		// 是否自动生成ID
+		Boolean idFlag2 = true;
+		tableNameMap.put(sheetName2, idFlag2);
+
+		String sheetName3 = "PDRC_PDM";
+		// 是否自动生成ID
+		Boolean idFlag3 = true;
+		tableNameMap.put(sheetName3, idFlag3);
+
+		String sheetName4 = "PDRC_PGM";
+		// 是否自动生成ID
+		Boolean idFlag4 = true;
+		tableNameMap.put(sheetName4, idFlag4);
+
+		String sheetName5 = "PDRC_PM";
+		// 是否自动生成ID
+		Boolean idFlag5 = true;
+		tableNameMap.put(sheetName5, idFlag5);
+
+		String sheetName6 = "PDRC_StaffManage";
+		// 是否自动生成ID
+		Boolean idFlag6 = true;
+		tableNameMap.put(sheetName6, idFlag6);
+
+		String charsetName = "GBK";
+		GenSqlService.genSqlScriptFileTotal(path, tableNameMap, sqlFilePath, charsetName);
+	}
+	
+	@Test
+	public void testGenSqlScriptFileTotal_03() {
+		logger.debug(Common.PROCESSING + fileFolder);
+		String fileName = "Data_20170531.xlsx";
+		String path = fileFolder + fileName;
+		String sqlFileName = "totalScript03.sql";
+
+		Map<String, Boolean> tableNameMap = new LinkedHashMap<String, Boolean>();
+		String sqlFilePath = fileFolder + sqlFileName;
+
+		String sheetName1 = "T_Users";
+		// 是否自动生成ID
+		Boolean idFlag1 = false;
+		tableNameMap.put(sheetName1, idFlag1);
+		
+		String charsetName = "GBK";
+		GenSqlService.genSqlScriptFileTotal(path, tableNameMap, sqlFilePath, charsetName);
+	}
+	
+	@Test
+	public void testGenSqlScriptFileTotal_04() {
+		logger.debug(Common.PROCESSING + fileFolder);
+		String fileName = "Data_20170531.xlsx";
+		String path = fileFolder + fileName;
+		String sqlFileName = "totalScript04.sql";
+		String sqlFilePath = fileFolder + sqlFileName;
+		String charsetName = "GBK";
+		GenSqlService.genSqlScriptFileTotal(path, sqlFilePath, charsetName);
 	}
 
 }

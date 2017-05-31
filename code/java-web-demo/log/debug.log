@@ -1631,4 +1631,143 @@
  2017-05-30 18:54:46,871 DEBUG [main]: Processing.../C:/Users/CoderDream/Documents/GitHub/java-web-demo/code/java-web-demo/target/test-classes/挖掘机_20170529.xlsx
  2017-05-30 18:54:53,300 DEBUG [main]: Size: 	155
  2017-05-30 18:55:08,465 DEBUG [main]: settlingChargeMap size	4
+ 2017-05-31 10:26:50,897 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 10:26:50,941 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 10:26:53,041 DEBUG [main]: Size: 	30
+ 2017-05-31 10:27:34,757 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 10:27:34,769 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 10:27:35,337 DEBUG [main]: Size: 	30
+ 2017-05-31 10:28:07,895 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 10:28:07,900 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 10:28:08,472 DEBUG [main]: Size: 	30
+ 2017-05-31 10:33:16,123 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/
+ 2017-05-31 10:33:16,129 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 10:34:11,509 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/
+ 2017-05-31 10:34:11,515 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 10:48:32,361 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/
+ 2017-05-31 10:48:32,366 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 10:58:11,124 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/
+ 2017-05-31 10:58:11,129 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 10:58:11,751 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 10:58:11,880 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 10:58:11,955 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 10:58:12,033 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 10:58:12,112 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 14:50:26,723 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/
+ 2017-05-31 14:50:26,759 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 14:50:27,477 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 14:50:27,659 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 14:50:27,728 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 14:50:27,788 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 14:50:27,839 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 14:50:27,933 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 14:51:38,393 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/
+ 2017-05-31 14:51:38,399 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 14:52:19,498 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/
+ 2017-05-31 14:52:19,534 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 14:54:02,019 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/
+ 2017-05-31 14:54:02,026 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 14:55:43,416 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/
+ 2017-05-31 14:55:43,422 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 14:55:44,234 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 14:55:44,364 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 14:55:44,427 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 14:55:44,492 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 14:55:44,545 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 14:55:44,686 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 15:34:56,441 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/
+ 2017-05-31 15:34:56,447 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 15:35:46,967 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/
+ 2017-05-31 15:35:46,972 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 15:59:43,724 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 15:59:43,729 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 15:59:44,670 DEBUG [main]: Size: 	6
+ 2017-05-31 15:59:55,750 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 15:59:55,758 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 15:59:56,410 DEBUG [main]: Size: 	11
+ 2017-05-31 16:11:29,158 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:11:29,163 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:11:29,807 DEBUG [main]: Size: 	6
+ 2017-05-31 16:11:29,808 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:11:29,808 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:11:29,942 DEBUG [main]: Size: 	11
+ 2017-05-31 16:11:39,375 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:11:39,379 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:11:40,059 DEBUG [main]: Size: 	6
+ 2017-05-31 16:11:40,060 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:11:40,060 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:11:40,143 DEBUG [main]: Size: 	11
+ 2017-05-31 16:14:49,601 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:14:49,607 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:14:50,258 DEBUG [main]: Size: 	6
+ 2017-05-31 16:14:50,258 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:14:50,259 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:14:50,355 DEBUG [main]: Size: 	11
+ 2017-05-31 16:19:03,350 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:19:03,355 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:19:04,004 DEBUG [main]: Size: 	6
+ 2017-05-31 16:19:04,005 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:19:04,005 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:19:04,106 DEBUG [main]: Size: 	11
+ 2017-05-31 16:20:11,912 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:20:11,916 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:20:12,586 DEBUG [main]: Size: 	6
+ 2017-05-31 16:20:12,587 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:20:12,587 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:20:12,698 DEBUG [main]: Size: 	11
+ 2017-05-31 16:20:55,093 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:20:55,097 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:20:55,735 DEBUG [main]: Size: 	6
+ 2017-05-31 16:20:55,736 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:20:55,736 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:20:55,887 DEBUG [main]: Size: 	11
+ 2017-05-31 16:36:14,901 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/
+ 2017-05-31 16:36:14,906 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:36:14,909 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:36:15,640 DEBUG [main]: Size: 	6
+ 2017-05-31 16:36:15,641 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:36:15,641 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:36:15,760 DEBUG [main]: Size: 	11
+ 2017-05-31 16:40:05,991 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/
+ 2017-05-31 16:40:05,996 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:40:05,998 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:40:06,642 DEBUG [main]: Size: 	6
+ 2017-05-31 16:40:06,643 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:40:06,643 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:40:06,747 DEBUG [main]: Size: 	11
+ 2017-05-31 16:40:40,513 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/
+ 2017-05-31 16:40:40,520 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:40:40,523 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:40:41,185 DEBUG [main]: Size: 	6
+ 2017-05-31 16:40:41,185 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:40:41,186 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:40:41,348 DEBUG [main]: Size: 	11
+ 2017-05-31 16:44:04,389 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/
+ 2017-05-31 16:44:04,394 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:44:04,396 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:44:05,057 DEBUG [main]: Size: 	6
+ 2017-05-31 16:44:05,058 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:44:05,058 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:44:05,167 DEBUG [main]: Size: 	11
+ 2017-05-31 16:44:46,664 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/
+ 2017-05-31 16:44:46,670 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:44:46,673 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:44:47,554 DEBUG [main]: Size: 	6
+ 2017-05-31 16:44:47,555 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:44:47,555 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:44:47,656 DEBUG [main]: Size: 	11
+ 2017-05-31 16:49:57,912 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/
+ 2017-05-31 16:49:57,918 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:49:57,921 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:49:58,559 DEBUG [main]: Size: 	6
+ 2017-05-31 16:49:58,560 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:49:58,560 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:49:58,730 DEBUG [main]: Size: 	11
+ 2017-05-31 16:54:21,084 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/
+ 2017-05-31 16:54:21,092 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:54:21,736 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:54:21,878 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:54:22,001 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:54:22,074 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
+ 2017-05-31 16:54:22,127 DEBUG [main]: Processing.../D:/Java/GitHub/java-web-demo/code/java-web-demo/target/test-classes/Data_20170531.xlsx
  

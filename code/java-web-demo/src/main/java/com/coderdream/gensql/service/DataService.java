@@ -19,6 +19,7 @@ import com.coderdream.gensql.bean.IsbgHumanMapComparator;
 import com.coderdream.gensql.bean.IsbgProject;
 import com.coderdream.gensql.bean.MemberParticipate;
 import com.coderdream.gensql.bean.MemberParticipateComparator;
+import com.coderdream.gensql.bean.Menu;
 import com.coderdream.gensql.bean.PdrcBsmDispatch;
 import com.coderdream.gensql.bean.PdrcBsmDispatchComparator;
 import com.coderdream.gensql.bean.PdrcEnpPrize;
@@ -28,6 +29,7 @@ import com.coderdream.gensql.bean.PdrcTm;
 import com.coderdream.gensql.bean.PdrcTmSalary;
 import com.coderdream.gensql.bean.PdrcTmSalaryComparator;
 import com.coderdream.gensql.bean.PmTmRelation;
+import com.coderdream.gensql.bean.Role;
 import com.coderdream.util.Constants;
 import com.coderdream.util.DateUtil;
 import com.coderdream.util.ExcelUtil;
@@ -93,6 +95,141 @@ public class DataService {
 		}
 
 		return list;
+	}
+
+	public List<PdrcStaffManage> getPdrcStaffManageList(String path, String sheetName) {
+		List<PdrcStaffManage> drcStaffManageList = null;
+		logger.debug(Common.PROCESSING + path);
+		// String sheetName = "PDRC_StaffManage";
+		try {
+			List<String[]> arrayList = ExcelUtil.readData(path, sheetName);
+			if (null != arrayList && 0 < arrayList.size()) {
+				drcStaffManageList = new ArrayList<PdrcStaffManage>();
+				logger.debug("Size: \t" + arrayList.size());
+			}
+			for (int i = 0; i < arrayList.size(); i++) {
+				PdrcStaffManage pdrcStaffManage = new PdrcStaffManage();
+				String[] arrayStr = arrayList.get(i);
+
+				/** 员工号 */
+				String workID = arrayStr[0];
+				/** 员工姓名 */
+				String userName = arrayStr[1];
+				/** 标准人定额 */
+				String normalMam = arrayStr[2];
+				/** TM工号 */
+				String tmWorkID = arrayStr[3];
+				/** TM姓名 */
+				String tmName = arrayStr[4];
+
+				pdrcStaffManage.setWorkID(workID);
+				pdrcStaffManage.setUserName(userName);
+				pdrcStaffManage.setNormalMam(normalMam);
+				pdrcStaffManage.setTmWorkID(tmWorkID);
+				pdrcStaffManage.setTmName(tmName);
+
+				drcStaffManageList.add(pdrcStaffManage);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return drcStaffManageList;
+	}
+
+	public static List<Role> getRoleList(String path, String sheetName) {
+		List<Role> roleList = null;
+		logger.debug(Common.PROCESSING + path);
+		try {
+			List<String[]> arrayList = ExcelUtil.readData(path, sheetName);
+			if (null != arrayList && 0 < arrayList.size()) {
+				roleList = new ArrayList<Role>();
+				logger.debug("Size: \t" + arrayList.size());
+			}
+			for (int i = 0; i < arrayList.size(); i++) {
+				Role role = new Role();
+				String[] arrayStr = arrayList.get(i);
+
+				String workID = arrayStr[0];
+
+				String roleName = arrayStr[1];
+
+				role.setWorkID(workID);
+				role.setRole(roleName);
+
+				roleList.add(role);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return roleList;
+	}
+
+	public static List<Menu> getMenuList(String path, String sheetName) {
+		List<Menu> menuList = null;
+		logger.debug(Common.PROCESSING + path);
+		try {
+			List<String[]> arrayList = ExcelUtil.readData(path, sheetName);
+			if (null != arrayList && 0 < arrayList.size()) {
+				menuList = new ArrayList<Menu>();
+				logger.debug("Size: \t" + arrayList.size());
+			}
+			for (int i = 0; i < arrayList.size(); i++) {
+				Menu menu = new Menu();
+				String[] arrayStr = arrayList.get(i);
+				String role = arrayStr[0];
+				String menuName = arrayStr[1];
+				menu.setRole(role);
+				menu.setMenuName(menuName);
+				menuList.add(menu);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return menuList;
+	}
+	
+	public Map<String, List<String>> getRoleMenuNameMap(List<Menu> menuList) {
+		Map<String, List<String>> menuNameListMap = new HashMap<String, List<String>>();
+		List<String> menuNameList = null;
+		System.out.println(menuList.size());
+		for (Menu menu : menuList) {
+			System.out.println(menu);
+			menuNameList = menuNameListMap.get(menu.getRole());
+			if(null == menuNameList) {
+				menuNameList = new ArrayList<String>();
+			}
+			menuNameList.add(menu.getMenuName());
+			menuNameListMap.put(menu.getRole(), menuNameList);
+		}
+		
+		return menuNameListMap;
+	}
+	
+	public static Map<String, List<String>> getWorkIdMenuNameMap(List<Role> roleList, List<Menu> menuList) {
+		//Map<String, List<String>> menuNameListMapResult = new LinkedHashMap<String, List<String>>();
+		Map<String, List<String>> menuNameListMapResult = new HashMap<String, List<String>>();
+		Map<String, List<String>> menuNameListMap = new HashMap<String, List<String>>();
+		
+		List<String> menuNameList = null;
+		System.out.println(menuList.size());
+		for (Menu menu : menuList) {
+			System.out.println(menu);
+			menuNameList = menuNameListMap.get(menu.getRole());
+			if(null == menuNameList) {
+				menuNameList = new ArrayList<String>();
+			}
+			menuNameList.add(menu.getMenuName());
+			menuNameListMap.put(menu.getRole(), menuNameList);
+		}
+		
+		for (Role role : roleList) {
+			menuNameListMapResult.put(role.getWorkID(), menuNameListMap.get(role.getRole()));
+		}
+		
+		return menuNameListMapResult;
 	}
 
 	public static List<PmTmRelation> getPmTmRelationList(String path) {
@@ -459,7 +596,8 @@ public class DataService {
 	public static Map<String, IsbgProject> getIsbgProjectMap(List<IsbgProject> totalIsbgProjectList) {
 		Map<String, IsbgProject> isbgProjectMap = new HashMap<String, IsbgProject>();
 
-//		List<IsbgProject> totalIsbgProjectList = DataService.getIsbgProjectListInfo(path);
+		// List<IsbgProject> totalIsbgProjectList =
+		// DataService.getIsbgProjectListInfo(path);
 		for (IsbgProject isbgProject : totalIsbgProjectList) {
 			System.out.println(isbgProject);
 			isbgProjectMap.put(isbgProject.getProjectId(), isbgProject);
@@ -542,7 +680,8 @@ public class DataService {
 		List<IsbgHumanMap> isbgHumanMapList = new ArrayList<IsbgHumanMap>();
 		Map<String, List<String>> pmWorkIDListMap = DataService.getPmWorkIDListMap(path);
 
-//		Map<String, IsbgProject> isbgProjectMap = DataService.getIsbgProjectMap(path);
+		// Map<String, IsbgProject> isbgProjectMap =
+		// DataService.getIsbgProjectMap(path);
 		IsbgHumanMap isbgHumanMap = null;
 		for (String key : isbgProjectMap.keySet()) {
 			IsbgProject isbgProject = isbgProjectMap.get(key);
@@ -606,7 +745,8 @@ public class DataService {
 
 	public static List<MemberParticipate> getMemberParticipateList(List<IsbgHumanMap> isbgHumanMapList) {
 		List<MemberParticipate> memberParticipateList = new ArrayList<MemberParticipate>();
-		//List<IsbgHumanMap> isbgHumanMapList = DataService.getIsbgHumanMapListInfo(path);
+		// List<IsbgHumanMap> isbgHumanMapList =
+		// DataService.getIsbgHumanMapListInfo(path);
 		System.out.println(isbgHumanMapList.size());
 		MemberParticipate memberParticipate = null;
 		MemberParticipate newMemberParticipate = null;
@@ -645,7 +785,7 @@ public class DataService {
 		}
 
 		Collections.sort(memberParticipateList, new MemberParticipateComparator());
-		return memberParticipateList; 
+		return memberParticipateList;
 	}
 
 	public static Map<String, Double> getMemberParticipateMap(List<IsbgHumanMap> isbgHumanMapList) {
@@ -661,19 +801,20 @@ public class DataService {
 			memberParticipateMap.put(projectID + ":" + staffWorkID + ":" + monthDate, participateRate);
 		}
 
-		return memberParticipateMap; 
+		return memberParticipateMap;
 	}
 
 	public static List<PdrcBsmDispatch> getPdrcBsmDispatchList(String path, List<IsbgHumanMap> isbgHumanMapList) {
 		List<PdrcBsmDispatch> pdrcBsmDispatchList = new ArrayList<PdrcBsmDispatch>();
-//		List<IsbgHumanMap> isbgHumanMapList = DataService.getIsbgHumanMapListInfo(path);
+		// List<IsbgHumanMap> isbgHumanMapList =
+		// DataService.getIsbgHumanMapListInfo(path);
 		Map<String, String> workIDBsmMap = DataService.getWorkIDBsmMap(path);
 		Map<String, Double> memberParticipateMap = DataService.getMemberParticipateMap(isbgHumanMapList);
 		for (String key : memberParticipateMap.keySet()) {
 			Double memberParticipateValue = memberParticipateMap.get(key);
 			System.out.println(key + "\t" + memberParticipateValue);
 		}
-		
+
 		PdrcBsmDispatch pdrcBsmDispatch = null;
 		for (IsbgHumanMap isbgHumanMap : isbgHumanMapList) {
 			String staffWorkID = isbgHumanMap.getStaffWorkID();
@@ -695,17 +836,18 @@ public class DataService {
 				String confrimTime = "NULL";
 
 				// 成员当月参与度
-				Double  memberParticipateValue = memberParticipateMap.get(projectID + ":" + staffWorkID + ":" + monthStr); 
-				if(null == memberParticipateValue) {
-					System.out.println("#####");					
+				Double memberParticipateValue = memberParticipateMap
+						.get(projectID + ":" + staffWorkID + ":" + monthStr);
+				if (null == memberParticipateValue) {
+					System.out.println("#####");
 					memberParticipateValue = new Double(1000);
 				}
-				
+
 				// TODO 获取本月月末日期
 				String monthEnd = DateUtil.getMonthEnd(monthStr);
-				
+
 				boolean compareResult = DateUtil.beforeDate(monthStr, monthEnd);
-				
+
 				// 已结项
 				if (DateUtil.beforeToday(predictOutProDate)) {
 					confrimTime = predictOutProDate;
@@ -725,7 +867,7 @@ public class DataService {
 
 					bsm = MathUtil.setScale(dBsm, 2).toString();
 				} // 未结项，但是上月需评价（BSM状态为【已分配】） TODO
-				else if(compareResult) {
+				else if (compareResult) {
 					confrimTime = "NULL";
 
 					// 已评价
@@ -760,7 +902,8 @@ public class DataService {
 
 	public static List<PdrcBsmDispatch> getPdrcBsmDispatchListBackup(String path, List<IsbgHumanMap> isbgHumanMapList) {
 		List<PdrcBsmDispatch> pdrcBsmDispatchList = new ArrayList<PdrcBsmDispatch>();
-//		List<IsbgHumanMap> isbgHumanMapList = DataService.getIsbgHumanMapListInfo(path);
+		// List<IsbgHumanMap> isbgHumanMapList =
+		// DataService.getIsbgHumanMapListInfo(path);
 		Map<String, String> workIDBsmMap = DataService.getWorkIDBsmMap(path);
 		PdrcBsmDispatch pdrcBsmDispatch = null;
 		for (IsbgHumanMap isbgHumanMap : isbgHumanMapList) {
@@ -827,10 +970,10 @@ public class DataService {
 			String bsm = pdrcBsmDispatch.getBsm();
 			String key = staffWorkID + ":" + dispatchMonth;
 
-			if("B-10097".equals(staffWorkID)) {
-				System.out.println(pdrcBsmDispatch.getDispatchMonth()+"\t"+pdrcBsmDispatch.getBsm());
+			if ("B-10097".equals(staffWorkID)) {
+				System.out.println(pdrcBsmDispatch.getDispatchMonth() + "\t" + pdrcBsmDispatch.getBsm());
 			}
-			
+
 			bsmList = bsmMap.get(key);
 			if (null == bsmList || 1 > bsmList.size()) {
 				bsmList = new ArrayList<>();
@@ -844,7 +987,7 @@ public class DataService {
 		Map<String, String> workIDBsmMap = DataService.getWorkIDBsmMap(path);
 		PdrcEnpPrize pdrcEnpPrize = null;
 		for (String key : bsmMap.keySet()) {
-			if("B-10097:2017-02-01".equals(key)) {
+			if ("B-10097:2017-02-01".equals(key)) {
 				System.out.println("EEE");
 			}
 			pdrcEnpPrize = new PdrcEnpPrize();
