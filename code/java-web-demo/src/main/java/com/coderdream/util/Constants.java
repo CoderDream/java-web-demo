@@ -8,7 +8,7 @@ public class Constants {
 	
 	public static String DATA_FILE_NAME = "Data11.xlsx";
 	
-	public static String EXCAVATOR_FILE_NAME = "挖掘机_20170529.xlsx";
+	public static String EXCAVATOR_FILE_NAME = "挖掘机.xlsx";
 	
 	public static String CATEGORY_OIL_FEE = "加油费";
 	

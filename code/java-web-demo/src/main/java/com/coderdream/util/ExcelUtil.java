@@ -145,16 +145,16 @@ public class ExcelUtil {
 			return null;
 		}
 
-		List<String[]> arrayList = readXSSFSheet(xssfSheet);
+		List<String[]> arrayList = readXSSFSheet(xssfSheet, 0);
 
 		xssfWorkbook.close();
 		return arrayList;
 	}
 
-	private static List<String[]> readXSSFSheet(XSSFSheet xssfSheet) {
+	private static List<String[]> readXSSFSheet(XSSFSheet xssfSheet, Integer beginIndex) {
 		List<String[]> arrayList = new ArrayList<String[]>();
 		// Read the Row
-		for (int rowNum = 0; rowNum <= xssfSheet.getLastRowNum(); rowNum++) {
+		for (int rowNum = beginIndex; rowNum <= xssfSheet.getLastRowNum(); rowNum++) {
 			XSSFRow xssfRow = xssfSheet.getRow(rowNum);
 			if (xssfRow != null) {
 				short minColIx = xssfRow.getFirstCellNum();
@@ -195,7 +195,7 @@ public class ExcelUtil {
 
 		InputStream is = new FileInputStream(path);
 		XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
-		List<String[]> arrayList = new ArrayList<String[]>();
+		
 		// Read the Sheet
 		XSSFSheet xssfSheet = xssfWorkbook.getSheet(sheetName);
 		if (xssfSheet == null) {
@@ -203,33 +203,10 @@ public class ExcelUtil {
 			return null;
 		}
 
-		// Read the Row
-		for (int rowNum = 1; rowNum <= xssfSheet.getLastRowNum(); rowNum++) {
-			XSSFRow xssfRow = xssfSheet.getRow(rowNum);
-			if (xssfRow != null) {
-				short minColIx = xssfRow.getFirstCellNum();
-				short maxColIx = xssfRow.getLastCellNum();
-				int size = maxColIx - minColIx;
-				String[] strArray = new String[size];
-
-				for (short colIx = minColIx; colIx < maxColIx; colIx++) {
-					XSSFCell cell = xssfRow.getCell(colIx, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-					if (cell == null) {
-						continue;
-					}
-					try {
-						strArray[colIx] = getValue(xssfRow.getCell(colIx, MissingCellPolicy.RETURN_BLANK_AS_NULL));
-						// ... do something with cell
-					} catch (ArrayIndexOutOfBoundsException e) {
-						e.printStackTrace();
-					}
-				}
-
-				arrayList.add(strArray);
-			}
-		}
+		List<String[]> arrayList = readXSSFSheet(xssfSheet, 0);
 
 		xssfWorkbook.close();
+		arrayList.remove(0);
 		return arrayList;
 	}
 

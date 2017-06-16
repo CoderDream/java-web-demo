@@ -22,7 +22,7 @@ public class ExcavatorService {
 
 	private static final Logger logger = LoggerFactory.getLogger(ExcavatorService.class);
 
-	public static List<Excavator> getExcavatorList(String path) {
+	public static List<Excavator> getExcavatorListBackup(String path) {
 		logger.debug("getExcavatorList begin");
 		List<Excavator> excavatorList = null;
 		String sheetName = "Total";
@@ -144,11 +144,20 @@ public class ExcavatorService {
 		return excavatorList;
 	}
 
-	public static Double getSumGrossIncome(String path, String beginDateString, String endDateString) {
+	/**
+	 * 营收
+	 * @param path
+	 * @param sheetName
+	 * @param beginDateString
+	 * @param endDateString
+	 * @return
+	 */
+	public static Double getSumGrossIncome(String path, String sheetName, String beginDateString,
+			String endDateString) {
 		Double grossIncome = new Double(0);
 		logger.debug("getExcavatorList begin");
 
-		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path, sheetName);
 		for (Excavator excavator : excavatorList) {
 			// System.out.println(excavator);
 			String workDate = excavator.getWorkDate();
@@ -169,11 +178,11 @@ public class ExcavatorService {
 		return grossIncome;
 	}
 
-	public static Double getSumGasFee(String path, String beginDateString, String endDateString) {
+	public static Double getSumGasFee(String path, String sheetName, String beginDateString, String endDateString) {
 		Double gasFee = new Double(0);
 		logger.debug("getSumGasFee begin");
 
-		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path, sheetName);
 		for (Excavator excavator : excavatorList) {
 			// System.out.println(excavator);
 			String workDate = excavator.getWorkDate();
@@ -194,11 +203,22 @@ public class ExcavatorService {
 		return gasFee;
 	}
 
-	public static Double getOutputRate(String path, String beginDateString, String endDateString) {
+	/**
+	 * @param path
+	 * @param sheetName
+	 * @param beginDateString
+	 * @param endDateString
+	 * @return
+	 */
+	public static Double getOutputRate(String path, String sheetName, String beginDateString, String endDateString) {
 		Double outputRate = new Double(0);
-		Double gasFee = ExcavatorService.getSumGasFee(path, beginDateString, endDateString);
-		Double grossIncome = ExcavatorService.getSumGrossIncome(path, beginDateString, endDateString);
-		outputRate = MathUtil.setScale(grossIncome / gasFee, 2);
+		// 所有的油费
+		Double gasFee = ExcavatorService.getSumGasFee(path, sheetName, beginDateString, endDateString);
+		// 所有营收（装车和台班）
+		Double grossIncome = ExcavatorService.getSumGrossIncome(path, sheetName, beginDateString, endDateString);
+		if (0.0 != gasFee && 0.0 != grossIncome) {
+			outputRate = MathUtil.setScale(grossIncome / gasFee, 2);
+		}
 		return outputRate;
 	}
 
@@ -211,11 +231,12 @@ public class ExcavatorService {
 	 * @param endDateString
 	 * @return
 	 */
-	public static Map<String, Double> getDailyGrossIncome(String path, String beginDateString, String endDateString) {
+	public static Map<String, Double> getDailyGrossIncome(String path, String sheetName, String beginDateString,
+			String endDateString) {
 		Map<String, Double> dailyIncomeMap = new TreeMap<String, Double>();
 		logger.debug("getAverageGrossIncome begin");
 
-		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path, sheetName);
 		for (Excavator excavator : excavatorList) {
 			String workDate = excavator.getWorkDate();
 			if (DateUtil.betweenTwoDate(workDate, beginDateString, endDateString)) {
@@ -242,9 +263,11 @@ public class ExcavatorService {
 	}
 
 	//
-	public static Double getAverageDailyGrossIncome(String path, String beginDateString, String endDateString) {
+	public static Double getAverageDailyGrossIncome(String path, String sheetName, String beginDateString,
+			String endDateString) {
 		Double averageDailyGrossIncome = new Double(0);
-		Map<String, Double> dailyIncomeMap = ExcavatorService.getDailyGrossIncome(path, beginDateString, endDateString);
+		Map<String, Double> dailyIncomeMap = ExcavatorService.getDailyGrossIncome(path, sheetName, beginDateString,
+				endDateString);
 		logger.debug("getAverageGrossIncome begin");
 		Double sum = new Double(0);
 		int mapSize = dailyIncomeMap.size();
@@ -258,11 +281,11 @@ public class ExcavatorService {
 		return averageDailyGrossIncome;
 	}
 
-	public static Double getGrossProfit(String path, String beginDateString, String endDateString) {
+	public static Double getGrossProfit(String path, String sheetName, String beginDateString, String endDateString) {
 		Double grossProfit = new Double(0);
 		logger.debug("getExcavatorList begin");
 
-		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path, sheetName);
 		for (Excavator excavator : excavatorList) {
 			String workDate = excavator.getWorkDate();
 			if (DateUtil.betweenTwoDate(workDate, beginDateString, endDateString)) {
@@ -288,9 +311,9 @@ public class ExcavatorService {
 		return grossProfit;
 	}
 
-	public static Double getStandByFeeByLocation(String path, String locationParam) {
+	public static Double getStandByFeeByLocation(String path, String sheetName, String locationParam) {
 		logger.debug("getExcavatorList begin");
-		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path, sheetName);
 		Double standByFee = getStandByFeeByLocation(locationParam, excavatorList);
 
 		return standByFee;
@@ -343,11 +366,11 @@ public class ExcavatorService {
 	 * @param locationParam
 	 * @return
 	 */
-	public static Double getStartFeeByLocation(String path, String locationParam) {
+	public static Double getStartFeeByLocation(String path, String sheetName, String locationParam) {
 
 		logger.debug("getStartFeeByLocation begin");
 
-		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path, sheetName);
 		Double startFee = getStartFeeByLocation(locationParam, excavatorList);
 
 		return startFee;
@@ -374,9 +397,9 @@ public class ExcavatorService {
 		return startFee;
 	}
 
-	public static Double getGrossProfitByLocation(String path, String locationParam) {
+	public static Double getGrossProfitByLocation(String path, String sheetName, String locationParam) {
 		logger.debug("getExcavatorList begin");
-		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path, sheetName);
 		Double grossProfit = getGrossProfitByLocation(locationParam, excavatorList);
 		return grossProfit;
 	}
@@ -432,11 +455,11 @@ public class ExcavatorService {
 		return grossProfitArray;
 	}
 
-	public static Double getOilFeeByLocation(String path, String locationParam) {
+	public static Double getOilFeeByLocation(String path, String sheetName, String locationParam) {
 
 		logger.debug("getExcavatorList begin");
 
-		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path, sheetName);
 
 		Double OilFee = getOilFeeByLocation(locationParam, excavatorList);
 
@@ -464,11 +487,11 @@ public class ExcavatorService {
 		return OilFee;
 	}
 
-	public static Double getNetProfitByLocation(String path, String locationParam) {
+	public static Double getNetProfitByLocation(String path, String sheetName, String locationParam) {
 		Double grossProfit = new Double(0);
 		logger.debug("getExcavatorList begin");
 
-		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path, sheetName);
 		for (Excavator excavator : excavatorList) {
 			/** 工地 */
 			String location = excavator.getLocation();
@@ -507,11 +530,11 @@ public class ExcavatorService {
 	 * @param locationParam
 	 * @return
 	 */
-	public static Map<String, Double> getSettlingChargeByLocation(String path, String locationParam) {
+	public static Map<String, Double> getSettlingChargeByLocation(String path, String sheetName, String locationParam) {
 		Map<String, Double> settlingChargeMap = new LinkedHashMap<String, Double>();
 		logger.debug("getSettlingChargeByLocation begin"); // TODO
 
-		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path, sheetName);
 		// 台班费
 		String feeType1 = Constants.CATEGORY_STAND_BY;
 		Double standByFee = getStandByFeeByLocation(locationParam, excavatorList);
@@ -556,11 +579,12 @@ public class ExcavatorService {
 	 * @param locationParam
 	 * @return
 	 */
-	public static Map<String, String> getSettlingChargeAmountByLocation(String path, String locationParam) {
+	public static Map<String, String> getSettlingChargeAmountByLocation(String path, String sheetName,
+			String locationParam) {
 		Map<String, String> settlingChargeMap = new LinkedHashMap<String, String>();
 		logger.debug("getSettlingChargeByLocation begin"); // TODO
 
-		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path, sheetName);
 
 		DecimalFormat decimalFormat = new DecimalFormat(Constants.DECIMAL_FORMAT);
 		// System.out.println(decimalFormat.format(number)); //12
@@ -604,11 +628,11 @@ public class ExcavatorService {
 		return settlingChargeMap;
 	}
 
-	public static Double getAverageGrossProfitByLocation(String path, String locationParam) {
+	public static Double getAverageGrossProfitByLocation(String path, String sheetName, String locationParam) {
 		Double grossProfit = new Double(0);
 		logger.debug("getExcavatorList begin");
 		Set<String> workDaySet = new HashSet<String>();
-		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path, sheetName);
 		for (Excavator excavator : excavatorList) {
 			/** 日期 */
 			String workDate = excavator.getWorkDate();
@@ -643,11 +667,11 @@ public class ExcavatorService {
 		}
 	}
 
-	public static Double getNetProfit(String path, String beginDateString, String endDateString) {
+	public static Double getNetProfit(String path, String sheetName, String beginDateString, String endDateString) {
 		Double netProfit = new Double(0);
 		logger.debug("getExcavatorList begin");
 
-		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path);
+		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path, sheetName);
 		for (Excavator excavator : excavatorList) {
 			String workDate = excavator.getWorkDate();
 			if (DateUtil.betweenTwoDate(workDate, beginDateString, endDateString)) {
