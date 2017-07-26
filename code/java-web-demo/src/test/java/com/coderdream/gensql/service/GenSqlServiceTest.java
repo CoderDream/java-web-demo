@@ -78,6 +78,23 @@ public class GenSqlServiceTest {
 		String charsetName = "GBK";
 		GenSqlService.genSqlScriptFile(path, sheetName, idFlag, sqlFilePath, charsetName);
 	}
+	
+	
+	
+	
+	@Test
+	public void testGenSqlScriptList_05() {
+		logger.debug(Common.PROCESSING + fileFolder);
+		String fileName = Constants.DATA_FILE_NAME;
+		String sheetName = "PDRC_ProfileBaseInfo";
+		String path = fileFolder + fileName;
+		String sqlFileName = sheetName + ".sql";
+		String sqlFilePath = fileFolder + sqlFileName;
+		// 是否自动生成ID
+		Boolean idFlag = false;
+		String charsetName = "GBK";
+		GenSqlService.genSqlScriptFile(path, sheetName, idFlag, sqlFilePath, charsetName);
+	}
 
 	@Test
 	public void testGenSqlScriptFileTotal_01() {
