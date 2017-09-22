@@ -598,7 +598,8 @@ public class ExcavatorService {
 			if (null == amountMap) {
 				amountMap = new TreeMap<>();
 				amountMap.put(Constants.CATEGORY_LOAD_BIG_SHORT, new Double(0));
-				amountMap.put(Constants.CATEGORY_LOAD_SMALL_SHORT, new Double(0));
+				amountMap.put(Constants.CATEGORY_LOAD_SMALL_SHORT,
+								new Double(0));
 				amountMap.put(Constants.CATEGORY_STAND_BY_SHORT, new Double(0));
 			}
 
@@ -620,6 +621,32 @@ public class ExcavatorService {
 				break;
 			}
 		}
+		return map;
+	}
+
+	public static Map<String, Integer> getWorkDayAmount(
+					List<Excavator> excavatorList) {
+		Map<String, Integer> map = new TreeMap<>();
+		Map<String, Map<String, Double>> grossProfitMap = getIncomeAmount(
+						excavatorList);
+		Integer count = 0;
+		for (Map.Entry<String, Map<String, Double>> entry : grossProfitMap
+						.entrySet()) {
+			System.out.println("Key = " + entry.getKey() + ", Value = "
+							+ entry.getValue());
+			String workday = entry.getKey();
+			int index = workday.lastIndexOf("-");
+			if (-1 != index) {
+				String month = workday.substring(0, index);
+				count = map.get(month);
+				if (null == count) {
+					count = 0;
+				}
+				count += 1;
+				map.put(month, count);
+			}
+		}
+
 		return map;
 	}
 

@@ -437,6 +437,51 @@ public class ExcavatorServiceTest {
 		filename = fileFolder + "\\src\\main\\webapp\\js\\" + filename;
 		FileUtil.write(contents, filename, charsetName);
 	}
+	
+	@Test
+	public void testGetWorkDayAmount_01() {
+		String path = fileFolder + dataFileName;
+		String sheetName1 = Constants.LOCATION_ONE;
+		String sheetName2 = Constants.LOCATION_TWO;
+		String sheetName3 = Constants.LOCATION_THREE;
+		List<Excavator> excavatorList1 = ExcavatorService.getExcavatorList(path,
+						sheetName1);
+		List<Excavator> excavatorList2 = ExcavatorService.getExcavatorList(path,
+						sheetName2);
+		List<Excavator> excavatorList3 = ExcavatorService.getExcavatorList(path,
+						sheetName3);
+		List<Excavator> excavatorList = new ArrayList<>();
+		excavatorList.addAll(excavatorList1);
+		excavatorList.addAll(excavatorList2);
+		excavatorList.addAll(excavatorList3);
+		Map<String, Integer> map =  ExcavatorService
+						.getWorkDayAmount(excavatorList);// TODO
+		for (Map.Entry<String, Integer> entry : map
+						.entrySet()) {
+			System.out.println("Key = " + entry.getKey() + ", Value = "
+							+ entry.getValue());
+		}
+
+		ObjectMapper mapper = new ObjectMapper();
+		String grossProfitMapStr = "";
+		try {
+			grossProfitMapStr = mapper.writeValueAsString(map);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		logger.debug(grossProfitMapStr);
+
+		String filename = "workdays_count.json";
+		String charsetName = "GBK";
+		List<String> contents = new ArrayList<>();
+		contents.add(grossProfitMapStr);
+
+		fileFolder = System.getProperty("user.dir");
+		filename = fileFolder + "\\src\\main\\webapp\\js\\" + filename;
+		FileUtil.write(contents, filename, charsetName);
+	}
 
 	@Test
 	public void testGetAverageDailyGrossIncome_01() {

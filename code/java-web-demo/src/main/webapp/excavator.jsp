@@ -25,8 +25,13 @@
 	<div id="container" style="width: 99%;">
 		<canvas id="canvas"></canvas>
 	</div>
+	<div id="container2" style="width: 99%;">
+		<canvas id="canvas2"></canvas>
+	</div>
 	<script>
-		var workdays = [];
+		var months = [ "2017-03", "2017-04", "2017-05", "2017-06", "2017-07",
+				"2017-08", "2017-09", "2017-10", "2017-11", "2017-12" ];
+		var workdays = [];//工作日
 		var amounts1 = [];// 大车
 		var amounts2 = [];// 小车
 		var amounts3 = [];// 台班
