@@ -1,41 +1,47 @@
 package com.coderdream.util;
 
 public class Constants {
-	
+
 	public static String SIMPLE_DATE_FORMAT = "yyyy-MM-dd";
-	
+
 	public static String TABLE_STRUCTURE_FILE_NAME = "TableStructure.xlsx";
-	
+
 	public static String DATA_FILE_NAME = "Data11.xlsx";
-	
-	public static String EXCAVATOR_FILE_NAME = "挖掘机.xlsx";
-	
+
+	public static String EXCAVATOR_FILE_NAME = "挖掘机.20170913.xlsx";
+
 	public static String CATEGORY_OIL_FEE = "加油费";
-	
+
 	public static String CATEGORY_SERVICE = "维修保养";
-	
+
 	public static String CATEGORY_LOAD = "装车";
-	
-	public static String CATEGORY_LOAD_BIG = "大车";
-	
-	public static String CATEGORY_LOAD_SMALL = "小车";
-	
-	public static String CATEGORY_STAND_BY = "台班";
-	
+
+	public final static String CATEGORY_LOAD_BIG = "大车";
+
+	public final static String CATEGORY_LOAD_SMALL = "小车";
+
+	public final static String CATEGORY_STAND_BY = "台班";
+
+	public final static String CATEGORY_LOAD_BIG_SHORT = "A";
+
+	public final static String CATEGORY_LOAD_SMALL_SHORT = "B";
+
+	public final static String CATEGORY_STAND_BY_SHORT = "C";
+
 	public static String CATEGORY_START_FEE = "进场费";
-	
+
 	public static String CATEGORY_SETTLING_CHARGE = "结余";
-	
+
 	/** 四化建 */
 	public static String LOCATION_ONE = "四化建";
-	
+
 	/** 步行街 */
 	public static String LOCATION_TWO = "步行街";
-	
+
 	/** 南湖公园 */
 	public static String LOCATION_THREE = "南湖公园";
-	
-	public static String DECIMAL_FORMAT="###################.###########";
+
+	public static String DECIMAL_FORMAT = "###################.###########";
 
 	/** 项目统计开始时间 */
 	public static String PROJECT_START_DATE = "2017-01-01";
@@ -54,13 +60,13 @@ public class Constants {
 
 	/** 空闲随机数最小值 */
 	public static int IDEL_RANDOM_MIN = 1;
-	
+
 	/** 空闲随机数最大值 */
 	public static int IDEL_RANDOM_MAX = 100;
 
 	/** 空闲最小天数 */
 	public static int IDEL_RANDOM_DAYS_MIN = 2;
-	
+
 	/** 空闲最大天数 */
 	public static int IDEL_RANDOM_DAYS_MAX = 7;
 
@@ -78,7 +84,7 @@ public class Constants {
 
 	/** 未评价 */
 	public static String BSM_STATE_DEFAULT = "1";
-	
+
 	/** 已分配 */
 	public static String BSM_STATE_NOT_CONFIRM = "2";
 

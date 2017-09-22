@@ -13,7 +13,8 @@ import org.slf4j.LoggerFactory;
 
 public class FileUtil {
 
-	private static final Logger logger = LoggerFactory.getLogger(FileUtil.class);
+	private static final Logger logger = LoggerFactory
+					.getLogger(FileUtil.class);
 
 	public static LinkedList<File> traverseFolder1(String strPath) {
 		LinkedList<File> list = new LinkedList<File>();
@@ -115,7 +116,12 @@ public class FileUtil {
 		return filelist;
 	}
 
-	public static void write(List<String> stringList, String filename, String charsetName) {
+	public static void write(List<String> stringList, String filename,
+					String charsetName) {
+		if (null == charsetName || "".equals(charsetName.trim())) {
+			charsetName = "GBK";
+		}
+
 		try {
 			// FileOutputStream fos=new
 			// FileOutputStream("C:/Users/Administrator/Desktop/userword.dict");

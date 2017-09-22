@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>图表插件</title>
-<link href="css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap.css" >
 <script type="text/javascript" src="js/jquery-1.12.0.js"></script>
 <script type="text/javascript" src="js/Chart.bundle.js"></script>
 <script type="text/javascript" src="js/utils.js"></script>

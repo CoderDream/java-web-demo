@@ -1,43 +1,27 @@
 package com.coderdream.excavator.service;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.junit.Before;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import com.coderdream.excavator.bean.Excavator;
 import com.coderdream.readfolder.util.FileUtil;
 import com.coderdream.util.Constants;
 
-/**
- * <pre>
- * 1、每月上班天数；
- * 2、每周上班天数；
- * 3、每日营收（按工地）；
- * 4、每日3个数量（按工地）；
- * 5、每周营收；
- * 6、每月营收；
- * 7、所有工地的毛收入（不除油费）；
- * 8、所有工地的纯收入（去除油费）；
- * 
- * </pre>
- * 
- * @author xulin28709
- *
- */
-public class ExcavatorServiceTest {
+public class ExcavatorServiceBackupTest {
 
 	private static final Logger logger = LoggerFactory
-					.getLogger(ExcavatorServiceTest.class);
+					.getLogger(ExcavatorServiceBackupTest.class);
 
 	private String fileFolder;
 
@@ -45,7 +29,7 @@ public class ExcavatorServiceTest {
 
 	private List<String> locationList;
 
-	@BeforeClass
+	@Before
 	public void setUp() throws Exception {
 		fileFolder = getClass().getResource("../../../../").getFile()
 						.toString();
@@ -59,7 +43,7 @@ public class ExcavatorServiceTest {
 	/**
 	 * TODO
 	 */
-	@Test(priority = 1)
+	@Test
 	public void testGetExcavatorList() {
 		String path = fileFolder + dataFileName;
 		String sheetName = Constants.LOCATION_THREE;
@@ -80,12 +64,12 @@ public class ExcavatorServiceTest {
 			e.printStackTrace();
 		}
 		logger.debug(excavatorListStr);
-
+		
 		String filename = "excavator.json";
 		String charsetName = "GBK";
 		List<String> contents = new ArrayList<>();
 		contents.add(excavatorListStr);
-
+		
 		FileUtil.write(contents, filename, charsetName);
 	}
 
@@ -99,7 +83,7 @@ public class ExcavatorServiceTest {
 						beginDateString, endDateString);
 		logger.debug("grossIncome\t" + grossIncome);
 		Double expectValue = new Double(21089);
-		Assert.assertEquals(expectValue, grossIncome);
+		assertEquals(expectValue, grossIncome);
 		logger.debug("grossIncome\t" + grossIncome);
 	}
 
@@ -114,7 +98,7 @@ public class ExcavatorServiceTest {
 						beginDateString, endDateString);
 		logger.debug("grossIncome\t" + grossIncome);
 		Double expectValue = new Double(76372);
-		Assert.assertEquals(expectValue, grossIncome);
+		assertEquals(expectValue, grossIncome);
 		logger.debug("grossIncome\t" + grossIncome);
 	}
 
@@ -128,7 +112,7 @@ public class ExcavatorServiceTest {
 		Double grossIncome = ExcavatorService.getSumGrossIncome(path, sheetName,
 						beginDateString, endDateString);
 		Double expectValue = new Double(31635);
-		Assert.assertEquals(expectValue, grossIncome);
+		assertEquals(expectValue, grossIncome);
 		logger.debug("grossIncome\t" + grossIncome);
 	}
 
@@ -142,7 +126,7 @@ public class ExcavatorServiceTest {
 						beginDateString, endDateString);
 
 		Double expectValue = new Double(2.44);
-		Assert.assertEquals(expectValue, outputRate);
+		assertEquals(expectValue, outputRate);
 		logger.debug("grossIncome\t" + outputRate);
 	}
 
@@ -155,7 +139,7 @@ public class ExcavatorServiceTest {
 		Double outputRate = ExcavatorService.getOutputRate(path, sheetName,
 						beginDateString, endDateString);
 		Double expectValue = new Double(2.1);
-		Assert.assertEquals(expectValue, outputRate);
+		assertEquals(expectValue, outputRate);
 		logger.debug("grossIncome\t" + outputRate);
 	}
 
@@ -168,7 +152,7 @@ public class ExcavatorServiceTest {
 		Double outputRate = ExcavatorService.getOutputRate(path, sheetName,
 						beginDateString, endDateString);
 		Double expectValue = new Double(2.41);
-		Assert.assertEquals(expectValue, outputRate);
+		assertEquals(expectValue, outputRate);
 		logger.debug("grossIncome\t" + outputRate);
 	}
 
@@ -351,91 +335,6 @@ public class ExcavatorServiceTest {
 			Double dailyIncome = dailyIncomeMap.get(workDate);
 			logger.debug(workDate + "\t" + dailyIncome);
 		}
-	}
-
-	/**
-	 * 3个工地的每日营收
-	 */
-	@Test
-	public void testGetDailyGrossIncome_02() {
-		String path = fileFolder + dataFileName;
-		String beginDateString = "2017-03-01";
-		String endDateString = "2017-08-31";
-		String sheetName1 = Constants.LOCATION_ONE;
-		String sheetName2 = Constants.LOCATION_TWO;
-		String sheetName3 = Constants.LOCATION_THREE;
-		Map<String, Double> dailyIncomeMap1 = ExcavatorService
-						.getDailyGrossIncome(path, sheetName1, beginDateString,
-										endDateString);
-		Map<String, Double> dailyIncomeMap2 = ExcavatorService
-						.getDailyGrossIncome(path, sheetName2, beginDateString,
-										endDateString);
-		Map<String, Double> dailyIncomeMap3 = ExcavatorService
-						.getDailyGrossIncome(path, sheetName3, beginDateString,
-										endDateString);
-		Map<String, Double> dailyIncomeMap = new TreeMap<String, Double>();
-		dailyIncomeMap.putAll(dailyIncomeMap1);
-		dailyIncomeMap.putAll(dailyIncomeMap2);
-		dailyIncomeMap.putAll(dailyIncomeMap3);
-
-		logger.debug("dailyIncomeMap size\t" + dailyIncomeMap.size());
-		for (String workDate : dailyIncomeMap.keySet()) {
-			Double dailyIncome = dailyIncomeMap.get(workDate);
-			logger.debug(workDate + "\t" + dailyIncome);
-		}
-	}
-
-	/**
-	 * 3个工地的每日营收
-	 */
-	@Test
-	public void testGetIncomeAmount_01() {
-		String path = fileFolder + dataFileName;
-		String sheetName1 = Constants.LOCATION_ONE;
-		String sheetName2 = Constants.LOCATION_TWO;
-		String sheetName3 = Constants.LOCATION_THREE;
-		List<Excavator> excavatorList1 = ExcavatorService.getExcavatorList(path,
-						sheetName1);
-		List<Excavator> excavatorList2 = ExcavatorService.getExcavatorList(path,
-						sheetName2);
-		List<Excavator> excavatorList3 = ExcavatorService.getExcavatorList(path,
-						sheetName3);
-		List<Excavator> excavatorList = new ArrayList<>();
-		excavatorList.addAll(excavatorList1);
-		excavatorList.addAll(excavatorList2);
-		excavatorList.addAll(excavatorList3);
-		Map<String, Map<String, Double>> grossProfitMap = ExcavatorService
-						.getIncomeAmount(excavatorList);// TODO
-		for (Map.Entry<String, Map<String, Double>> entry : grossProfitMap
-						.entrySet()) {
-			System.out.println("Key = " + entry.getKey() + ", Value = "
-							+ entry.getValue());
-			Map<String, Double> map = entry.getValue();
-			for (Map.Entry<String, Double> entry2 : map.entrySet()) {
-				System.out.println("Key = " + entry2.getKey() + ", Value = "
-								+ entry2.getValue());
-			}
-		}
-
-		ObjectMapper mapper = new ObjectMapper();
-		String grossProfitMapStr = "";
-		try {
-			grossProfitMapStr = mapper.writeValueAsString(grossProfitMap);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		logger.debug(grossProfitMapStr);
-
-		String filename = "gross_profit.json";
-		String charsetName = "GBK";
-		List<String> contents = new ArrayList<>();
-		contents.add(grossProfitMapStr);
-
-		fileFolder = System.getProperty("user.dir");
-		filename = fileFolder + "\\src\\main\\webapp\\js\\" + filename;
-		FileUtil.write(contents, filename, charsetName);
 	}
 
 	@Test

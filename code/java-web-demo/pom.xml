@@ -35,11 +35,12 @@
 			<version>${poi.version}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.12</version>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
@@ -86,6 +87,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>java-web-demo</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -130,7 +132,5 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-
-		<finalName>java-web-demo</finalName>
 	</build>
 </project>
