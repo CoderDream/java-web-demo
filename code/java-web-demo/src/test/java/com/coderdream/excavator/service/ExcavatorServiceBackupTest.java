@@ -35,9 +35,9 @@ public class ExcavatorServiceBackupTest {
 						.toString();
 		dataFileName = Constants.EXCAVATOR_FILE_NAME;
 		locationList = new ArrayList<String>();
-		locationList.add(Constants.LOCATION_ONE);
-		locationList.add(Constants.LOCATION_TWO);
-		locationList.add(Constants.LOCATION_THREE);
+		locationList.add(Constants.LOCATION_SHI_HUA_JIAN);
+		locationList.add(Constants.LOCATION_WALK_STREET);
+		locationList.add(Constants.LOCATION_NANHU_PARK);
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class ExcavatorServiceBackupTest {
 	@Test
 	public void testGetExcavatorList() {
 		String path = fileFolder + dataFileName;
-		String sheetName = Constants.LOCATION_THREE;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path,
 						sheetName);
 		for (Excavator excavator : excavatorList) {
@@ -78,7 +78,7 @@ public class ExcavatorServiceBackupTest {
 		String path = fileFolder + dataFileName;
 		String beginDateString = "2017-01-01";
 		String endDateString = "2017-12-30";
-		String sheetName = Constants.LOCATION_ONE;
+		String sheetName = Constants.LOCATION_SHI_HUA_JIAN;
 		Double grossIncome = ExcavatorService.getSumGrossIncome(path, sheetName,
 						beginDateString, endDateString);
 		logger.debug("grossIncome\t" + grossIncome);
@@ -93,7 +93,7 @@ public class ExcavatorServiceBackupTest {
 		String beginDateString = "2017-01-01";
 		String endDateString = "2017-05-31";
 		// 步行街
-		String sheetName = Constants.LOCATION_TWO;
+		String sheetName = Constants.LOCATION_WALK_STREET;
 		Double grossIncome = ExcavatorService.getSumGrossIncome(path, sheetName,
 						beginDateString, endDateString);
 		logger.debug("grossIncome\t" + grossIncome);
@@ -108,7 +108,7 @@ public class ExcavatorServiceBackupTest {
 		String beginDateString = "2017-01-01";
 		String endDateString = "2017-12-31";
 		// 南湖工地
-		String sheetName = Constants.LOCATION_THREE;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Double grossIncome = ExcavatorService.getSumGrossIncome(path, sheetName,
 						beginDateString, endDateString);
 		Double expectValue = new Double(31635);
@@ -121,7 +121,7 @@ public class ExcavatorServiceBackupTest {
 		String path = fileFolder + dataFileName;
 		String beginDateString = "2017-01-01";
 		String endDateString = "2017-12-01";
-		String sheetName = Constants.LOCATION_ONE;
+		String sheetName = Constants.LOCATION_SHI_HUA_JIAN;
 		Double outputRate = ExcavatorService.getOutputRate(path, sheetName,
 						beginDateString, endDateString);
 
@@ -135,7 +135,7 @@ public class ExcavatorServiceBackupTest {
 		String path = fileFolder + dataFileName;
 		String beginDateString = "2017-01-01";
 		String endDateString = "2017-12-01";
-		String sheetName = Constants.LOCATION_TWO;
+		String sheetName = Constants.LOCATION_WALK_STREET;
 		Double outputRate = ExcavatorService.getOutputRate(path, sheetName,
 						beginDateString, endDateString);
 		Double expectValue = new Double(2.1);
@@ -148,7 +148,7 @@ public class ExcavatorServiceBackupTest {
 		String path = fileFolder + dataFileName;
 		String beginDateString = "2017-01-01";
 		String endDateString = "2017-12-01";
-		String sheetName = Constants.LOCATION_THREE;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Double outputRate = ExcavatorService.getOutputRate(path, sheetName,
 						beginDateString, endDateString);
 		Double expectValue = new Double(2.41);
@@ -161,7 +161,7 @@ public class ExcavatorServiceBackupTest {
 		String path = fileFolder + dataFileName;
 		String beginDateString = "2017-03-01";
 		String endDateString = "2017-04-01";
-		String sheetName = Constants.LOCATION_THREE;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Double gasFee = ExcavatorService.getSumGasFee(path, sheetName,
 						beginDateString, endDateString);
 		logger.debug("gasFee\t" + gasFee);
@@ -172,7 +172,7 @@ public class ExcavatorServiceBackupTest {
 		String path = fileFolder + dataFileName;
 		String beginDateString = "2017-04-02";
 		String endDateString = "2017-05-20";
-		String sheetName = Constants.LOCATION_THREE;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Double gasFee = ExcavatorService.getSumGasFee(path, sheetName,
 						beginDateString, endDateString);
 		logger.debug("gasFee\t" + gasFee);
@@ -183,7 +183,7 @@ public class ExcavatorServiceBackupTest {
 		String path = fileFolder + dataFileName;
 		String beginDateString = "2017-04-01";
 		String endDateString = "2017-04-30";
-		String sheetName = Constants.LOCATION_THREE;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Double grossProfit = ExcavatorService.getGrossProfit(path, sheetName,
 						beginDateString, endDateString);
 		logger.debug("grossProfit\t" + grossProfit);
@@ -194,7 +194,7 @@ public class ExcavatorServiceBackupTest {
 		String path = fileFolder + dataFileName;
 		String beginDateString = "2017-05-01";
 		String endDateString = "2017-05-31";
-		String sheetName = Constants.LOCATION_THREE;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Double grossProfit = ExcavatorService.getGrossProfit(path, sheetName,
 						beginDateString, endDateString);
 		logger.debug("grossProfit\t" + grossProfit);
@@ -203,8 +203,8 @@ public class ExcavatorServiceBackupTest {
 	@Test
 	public void testGetGrossProfitByLocation_01() {
 		String path = fileFolder + dataFileName;
-		String location = Constants.LOCATION_ONE;
-		String sheetName = Constants.LOCATION_THREE;
+		String location = Constants.LOCATION_SHI_HUA_JIAN;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Double grossProfit = ExcavatorService.getGrossProfitByLocation(path,
 						sheetName, location);
 		logger.debug(location + "grossProfit\t" + grossProfit);
@@ -213,8 +213,8 @@ public class ExcavatorServiceBackupTest {
 	@Test
 	public void testGetGrossProfitByLocation_02() {
 		String path = fileFolder + dataFileName;
-		String location = Constants.LOCATION_TWO;
-		String sheetName = Constants.LOCATION_THREE;
+		String location = Constants.LOCATION_WALK_STREET;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Double grossProfit = ExcavatorService.getGrossProfitByLocation(path,
 						sheetName, location);
 		logger.debug(location + "grossProfit\t" + grossProfit);
@@ -223,8 +223,8 @@ public class ExcavatorServiceBackupTest {
 	@Test
 	public void testGetGrossProfitByLocation_03() {
 		String path = fileFolder + dataFileName;
-		String location = Constants.LOCATION_THREE;
-		String sheetName = Constants.LOCATION_THREE;
+		String location = Constants.LOCATION_NANHU_PARK;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Double grossProfit = ExcavatorService.getGrossProfitByLocation(path,
 						sheetName, location);
 		logger.debug(location + "grossProfit\t" + grossProfit);
@@ -233,7 +233,7 @@ public class ExcavatorServiceBackupTest {
 	@Test
 	public void testGetGrossProfitByLocation_04() {
 		String path = fileFolder + dataFileName;
-		String sheetName = Constants.LOCATION_THREE;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		for (String location : locationList) {
 			Double grossProfit = ExcavatorService.getGrossProfitByLocation(path,
 							sheetName, location);
@@ -244,8 +244,8 @@ public class ExcavatorServiceBackupTest {
 	@Test
 	public void testGetAverageGrossProfitByLocation_01() {
 		String path = fileFolder + dataFileName;
-		String location = Constants.LOCATION_ONE;
-		String sheetName = Constants.LOCATION_THREE;
+		String location = Constants.LOCATION_SHI_HUA_JIAN;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Double grossProfit = ExcavatorService.getAverageGrossProfitByLocation(
 						path, sheetName, location);
 		logger.debug(location + "grossProfit\t" + grossProfit);
@@ -254,8 +254,8 @@ public class ExcavatorServiceBackupTest {
 	@Test
 	public void testGetAverageGrossProfitByLocation_02() {
 		String path = fileFolder + dataFileName;
-		String location = Constants.LOCATION_TWO;
-		String sheetName = Constants.LOCATION_THREE;
+		String location = Constants.LOCATION_WALK_STREET;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Double grossProfit = ExcavatorService.getAverageGrossProfitByLocation(
 						path, sheetName, location);
 		logger.debug(location + "grossProfit\t" + grossProfit);
@@ -264,8 +264,8 @@ public class ExcavatorServiceBackupTest {
 	@Test
 	public void testGetAverageGrossProfitByLocation_03() {
 		String path = fileFolder + dataFileName;
-		String location = Constants.LOCATION_THREE;
-		String sheetName = Constants.LOCATION_THREE;
+		String location = Constants.LOCATION_NANHU_PARK;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Double grossProfit = ExcavatorService.getAverageGrossProfitByLocation(
 						path, sheetName, location);
 		logger.debug(location + "grossProfit\t" + grossProfit);
@@ -274,7 +274,7 @@ public class ExcavatorServiceBackupTest {
 	@Test
 	public void testGetAverageGrossProfitByLocation_04() {
 		String path = fileFolder + dataFileName;
-		String sheetName = Constants.LOCATION_THREE;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		for (String location : locationList) {
 			Double grossProfit = ExcavatorService
 							.getAverageGrossProfitByLocation(path, sheetName,
@@ -288,7 +288,7 @@ public class ExcavatorServiceBackupTest {
 		String path = fileFolder + dataFileName;
 		String beginDateString = "2017-04-01";
 		String endDateString = "2017-04-30";
-		String sheetName = Constants.LOCATION_THREE;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Double netProfit = ExcavatorService.getNetProfit(path, sheetName,
 						beginDateString, endDateString);
 		logger.debug("netProfit\t" + netProfit);
@@ -299,7 +299,7 @@ public class ExcavatorServiceBackupTest {
 		String path = fileFolder + dataFileName;
 		String beginDateString = "2017-05-01";
 		String endDateString = "2017-05-31";
-		String sheetName = Constants.LOCATION_THREE;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Double netProfit = ExcavatorService.getNetProfit(path, sheetName,
 						beginDateString, endDateString);
 		logger.debug("netProfit\t" + netProfit);
@@ -314,7 +314,7 @@ public class ExcavatorServiceBackupTest {
 		String path = fileFolder + dataFileName;
 		String beginDateString = "2017-04-01";
 		String endDateString = "2017-05-31";
-		String sheetName = Constants.LOCATION_THREE;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Double netProfit = ExcavatorService.getNetProfit(path, sheetName,
 						beginDateString, endDateString);
 		logger.debug("netProfit\t" + netProfit / 2);
@@ -325,7 +325,7 @@ public class ExcavatorServiceBackupTest {
 		String path = fileFolder + dataFileName;
 		String beginDateString = "2017-04-01";
 		String endDateString = "2017-05-31";
-		String sheetName = Constants.LOCATION_THREE;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Map<String, Double> dailyIncomeMap = ExcavatorService
 						.getDailyGrossIncome(path, sheetName, beginDateString,
 										endDateString);
@@ -342,7 +342,7 @@ public class ExcavatorServiceBackupTest {
 		String path = fileFolder + dataFileName;
 		String beginDateString = "2017-04-01";
 		String endDateString = "2017-04-30";
-		String sheetName = Constants.LOCATION_THREE;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Double averageDailyGrossIncome = ExcavatorService
 						.getAverageDailyGrossIncome(path, sheetName,
 										beginDateString, endDateString);
@@ -355,7 +355,7 @@ public class ExcavatorServiceBackupTest {
 		String path = fileFolder + dataFileName;
 		String beginDateString = "2017-05-01";
 		String endDateString = "2017-05-31";
-		String sheetName = Constants.LOCATION_THREE;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Double averageDailyGrossIncome = ExcavatorService
 						.getAverageDailyGrossIncome(path, sheetName,
 										beginDateString, endDateString);
@@ -368,7 +368,7 @@ public class ExcavatorServiceBackupTest {
 		String path = fileFolder + dataFileName;
 		String beginDateString = "2017-04-01";
 		String endDateString = "2017-05-31";
-		String sheetName = Constants.LOCATION_THREE;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Double averageDailyGrossIncome = ExcavatorService
 						.getAverageDailyGrossIncome(path, sheetName,
 										beginDateString, endDateString);
@@ -379,8 +379,8 @@ public class ExcavatorServiceBackupTest {
 	@Test
 	public void testGetSettlingChargeByLocation_01() {
 		String path = fileFolder + dataFileName;
-		String location = Constants.LOCATION_ONE;
-		String sheetName = Constants.LOCATION_THREE;
+		String location = Constants.LOCATION_SHI_HUA_JIAN;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Map<String, Double> settlingChargeMap = ExcavatorService
 						.getSettlingChargeByLocation(path, sheetName, location);
 
@@ -394,8 +394,8 @@ public class ExcavatorServiceBackupTest {
 	@Test
 	public void testGetSettlingChargeByLocation_02() {
 		String path = fileFolder + dataFileName;
-		String location = Constants.LOCATION_TWO;
-		String sheetName = Constants.LOCATION_THREE;
+		String location = Constants.LOCATION_WALK_STREET;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Map<String, Double> settlingChargeMap = ExcavatorService
 						.getSettlingChargeByLocation(path, sheetName, location);
 
@@ -409,8 +409,8 @@ public class ExcavatorServiceBackupTest {
 	@Test
 	public void testGetSettlingChargeByLocation_03() {
 		String path = fileFolder + dataFileName;
-		String location = Constants.LOCATION_THREE;
-		String sheetName = Constants.LOCATION_THREE;
+		String location = Constants.LOCATION_NANHU_PARK;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Map<String, Double> settlingChargeMap = ExcavatorService
 						.getSettlingChargeByLocation(path, sheetName, location);
 
@@ -424,8 +424,8 @@ public class ExcavatorServiceBackupTest {
 	@Test
 	public void testGetSettlingChargeAmountByLocation_01() {
 		String path = fileFolder + dataFileName;
-		String location = Constants.LOCATION_ONE;
-		String sheetName = Constants.LOCATION_THREE;
+		String location = Constants.LOCATION_SHI_HUA_JIAN;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Map<String, String> settlingChargeMap = ExcavatorService
 						.getSettlingChargeAmountByLocation(path, sheetName,
 										location);
@@ -440,8 +440,8 @@ public class ExcavatorServiceBackupTest {
 	@Test
 	public void testGetSettlingChargeAmountByLocation_02() {
 		String path = fileFolder + dataFileName;
-		String location = Constants.LOCATION_TWO;
-		String sheetName = Constants.LOCATION_THREE;
+		String location = Constants.LOCATION_WALK_STREET;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Map<String, String> settlingChargeMap = ExcavatorService
 						.getSettlingChargeAmountByLocation(path, sheetName,
 										location);
@@ -457,8 +457,8 @@ public class ExcavatorServiceBackupTest {
 	@Test
 	public void testGetSettlingChargeAmountByLocation_03() {
 		String path = fileFolder + dataFileName;
-		String location = Constants.LOCATION_THREE;
-		String sheetName = Constants.LOCATION_THREE;
+		String location = Constants.LOCATION_NANHU_PARK;
+		String sheetName = Constants.LOCATION_NANHU_PARK;
 		Map<String, String> settlingChargeMap = ExcavatorService
 						.getSettlingChargeAmountByLocation(path, sheetName,
 										location);

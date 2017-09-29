@@ -13,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.coderdream.excavator.bean.Excavator;
+import com.coderdream.excavator.bean.Loading;
+import com.coderdream.excavator.bean.Shift;
 import com.coderdream.util.Constants;
 import com.coderdream.util.DateUtil;
 import com.coderdream.util.ExcelUtil;
@@ -168,6 +170,97 @@ public class ExcavatorService {
 	}
 
 	/**
+	 * 根据SheetName查找
+	 * 
+	 * @param path
+	 * @param sheetName
+	 * @return
+	 */
+	public static List<Loading> getLoadingList(String path, String sheetName) {
+		logger.debug("getLoadingList begin");
+		List<Loading> loadingList = null;
+		try {
+			List<String[]> arrayList = ExcelUtil.readData(path, sheetName);
+			if (null != arrayList && 0 < arrayList.size()) {
+				loadingList = new ArrayList<>();
+				logger.debug("Size: \t" + arrayList.size());
+			}
+			for (int i = 0; i < arrayList.size(); i++) {
+				Loading loading = new Loading();
+				String[] arrayStr = arrayList.get(i);
+
+				/** 工作日期 */
+				String workDate = arrayStr[0];
+
+				/** 收入 */
+				Double income = arrayStr[1] == null ? new Double(0)
+								: Double.valueOf(arrayStr[1]);
+
+				/** 数量（大车） */
+				Double amountBig = arrayStr[2] == null ? new Double(0)
+								: Double.valueOf(arrayStr[2]);
+
+				/** 数量 （小车） */
+				Double amountSmall = arrayStr[3] == null ? new Double(0)
+								: Double.valueOf(arrayStr[3]);
+
+				loading.setWorkDate(workDate);
+				loading.setIncome(income);
+				loading.setAmountBig(amountBig);
+				loading.setAmountSmall(amountSmall);
+				loadingList.add(loading);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return loadingList;
+	}
+
+	/**
+	 * 根据SheetName查找
+	 * 
+	 * @param path
+	 * @param sheetName
+	 * @return
+	 */
+	public static List<Shift> getShiftList(String path, String sheetName) {
+		logger.debug("getLoadingList begin");
+		List<Shift> shiftList = null;
+		try {
+			List<String[]> arrayList = ExcelUtil.readData(path, sheetName);
+			if (null != arrayList && 0 < arrayList.size()) {
+				shiftList = new ArrayList<>();
+				logger.debug("Size: \t" + arrayList.size());
+			}
+			for (int i = 0; i < arrayList.size(); i++) {
+				Shift shift = new Shift();
+				String[] arrayStr = arrayList.get(i);
+
+				/** 工作日期 */
+				String workDate = arrayStr[0];
+
+				/** 收入 */
+				Double income = arrayStr[1] == null ? new Double(0)
+								: Double.valueOf(arrayStr[1]);
+
+				/** 数量 */
+				Double amount = arrayStr[2] == null ? new Double(0)
+								: Double.valueOf(arrayStr[2]);
+
+				shift.setWorkDate(workDate);
+				shift.setIncome(income);
+				shift.setAmount(amount);
+				shiftList.add(shift);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return shiftList;
+	}
+
+	/**
 	 * 总营收
 	 * 
 	 * @param path
@@ -193,8 +286,8 @@ public class ExcavatorService {
 				Double income = excavator.getIncome();
 				/** 类别 */
 				String category = excavator.getCategory();
-				if (Constants.CATEGORY_LOAD.equals(category)
-								|| Constants.CATEGORY_STAND_BY
+				if (Constants.CATEGORY_LOADING.equals(category)
+								|| Constants.CATEGORY_SHIFT
 												.equals(category)) {
 					grossIncome += income;
 				}
@@ -285,8 +378,8 @@ public class ExcavatorService {
 				}
 				/** 类别 */
 				String category = excavator.getCategory();
-				if (Constants.CATEGORY_LOAD.equals(category)
-								|| Constants.CATEGORY_STAND_BY
+				if (Constants.CATEGORY_LOADING.equals(category)
+								|| Constants.CATEGORY_SHIFT
 												.equals(category)) {
 					if (income > 0) {
 						oldIncome += income;
@@ -344,8 +437,8 @@ public class ExcavatorService {
 					grossProfit -= expend;
 				}
 
-				if (Constants.CATEGORY_LOAD.equals(category)
-								|| Constants.CATEGORY_STAND_BY
+				if (Constants.CATEGORY_LOADING.equals(category)
+								|| Constants.CATEGORY_SHIFT
 												.equals(category)) {
 					grossProfit += income;
 				}
@@ -381,7 +474,7 @@ public class ExcavatorService {
 
 				/** 类别 */
 				String category = excavator.getCategory();
-				if (Constants.CATEGORY_STAND_BY.equals(category)) {
+				if (Constants.CATEGORY_SHIFT.equals(category)) {
 					standByFee += income;
 				}
 			} else {
@@ -404,7 +497,7 @@ public class ExcavatorService {
 
 				/** 类别 */
 				String category = excavator.getCategory();
-				if (Constants.CATEGORY_STAND_BY.equals(category)) {
+				if (Constants.CATEGORY_SHIFT.equals(category)) {
 					standByFee += amount;
 				}
 			} else {
@@ -477,7 +570,7 @@ public class ExcavatorService {
 
 				/** 类别 */
 				String category = excavator.getCategory();
-				if (Constants.CATEGORY_LOAD.equals(category)) {
+				if (Constants.CATEGORY_LOADING.equals(category)) {
 					grossProfit += income;
 				}
 			} else {
@@ -505,10 +598,10 @@ public class ExcavatorService {
 
 				/** 类别 */
 				String category = excavator.getCategory();
-				if (Constants.CATEGORY_LOAD.equals(category)) {
-					if (Constants.CATEGORY_LOAD_BIG.equals(comment)) {
+				if (Constants.CATEGORY_LOADING.equals(category)) {
+					if (Constants.CATEGORY_LOADING_BIG.equals(comment)) {
 						grossProfitArray[0] += amount;
-					} else if (Constants.CATEGORY_LOAD_SMALL.equals(comment)) {
+					} else if (Constants.CATEGORY_LOADING_SMALL.equals(comment)) {
 						grossProfitArray[1] += amount;
 					}
 				}
@@ -539,39 +632,39 @@ public class ExcavatorService {
 			if (null != comment && !"".equals(comment.trim())) {
 
 				switch (comment) {
-				case Constants.CATEGORY_LOAD_BIG:
+				case Constants.CATEGORY_LOADING_BIG:
 					grossProfit = grossProfitMap.get(workDate + "_"
-									+ Constants.CATEGORY_LOAD_BIG_SHORT);
+									+ Constants.CATEGORY_LOADING_BIG_SHORT);
 					if (null == grossProfit) {
 						grossProfit = new Double(0);
 					}
 					grossProfit += amount;
 					grossProfitMap.put(
-									workDate + "_" + Constants.CATEGORY_LOAD_BIG_SHORT,
+									workDate + "_" + Constants.CATEGORY_LOADING_BIG_SHORT,
 									grossProfit);
 					break;
 
-				case Constants.CATEGORY_LOAD_SMALL:
+				case Constants.CATEGORY_LOADING_SMALL:
 					grossProfit = grossProfitMap.get(workDate + "_"
-									+ Constants.CATEGORY_LOAD_SMALL_SHORT);
+									+ Constants.CATEGORY_LOADING_SMALL_SHORT);
 					if (null == grossProfit) {
 						grossProfit = new Double(0);
 					}
 					grossProfit += amount;
 					grossProfitMap.put(
-									workDate + "_" + Constants.CATEGORY_LOAD_SMALL_SHORT,
+									workDate + "_" + Constants.CATEGORY_LOADING_SMALL_SHORT,
 									grossProfit);
 					break;
 
-				case Constants.CATEGORY_STAND_BY:
+				case Constants.CATEGORY_SHIFT:
 					grossProfit = grossProfitMap.get(workDate + "_"
-									+ Constants.CATEGORY_STAND_BY_SHORT);
+									+ Constants.CATEGORY_SHIFT_SHORT);
 					if (null == grossProfit) {
 						grossProfit = new Double(0);
 					}
 					grossProfit += amount;
 					grossProfitMap.put(
-									workDate + "_" + Constants.CATEGORY_STAND_BY_SHORT,
+									workDate + "_" + Constants.CATEGORY_SHIFT_SHORT,
 									grossProfit);
 
 					break;
@@ -597,23 +690,125 @@ public class ExcavatorService {
 			amountMap = map.get(workDateStr);
 			if (null == amountMap) {
 				amountMap = new TreeMap<>();
-				amountMap.put(Constants.CATEGORY_LOAD_BIG_SHORT, new Double(0));
-				amountMap.put(Constants.CATEGORY_LOAD_SMALL_SHORT,
+				amountMap.put(Constants.CATEGORY_LOADING_BIG_SHORT, new Double(0));
+				amountMap.put(Constants.CATEGORY_LOADING_SMALL_SHORT,
 								new Double(0));
-				amountMap.put(Constants.CATEGORY_STAND_BY_SHORT, new Double(0));
+				amountMap.put(Constants.CATEGORY_SHIFT_SHORT, new Double(0));
 			}
 
 			switch (type) {
-			case Constants.CATEGORY_LOAD_BIG_SHORT:
-				amountMap.put(Constants.CATEGORY_LOAD_BIG_SHORT, amount);
+			case Constants.CATEGORY_LOADING_BIG_SHORT:
+				amountMap.put(Constants.CATEGORY_LOADING_BIG_SHORT, amount);
 				map.put(workDateStr, amountMap);
 				break;
-			case Constants.CATEGORY_LOAD_SMALL_SHORT:
-				amountMap.put(Constants.CATEGORY_LOAD_SMALL_SHORT, amount);
+			case Constants.CATEGORY_LOADING_SMALL_SHORT:
+				amountMap.put(Constants.CATEGORY_LOADING_SMALL_SHORT, amount);
 				map.put(workDateStr, amountMap);
 				break;
-			case Constants.CATEGORY_STAND_BY_SHORT:
-				amountMap.put(Constants.CATEGORY_STAND_BY_SHORT, amount);
+			case Constants.CATEGORY_SHIFT_SHORT:
+				amountMap.put(Constants.CATEGORY_SHIFT_SHORT, amount);
+				map.put(workDateStr, amountMap);
+				break;
+
+			default:
+				break;
+			}
+		}
+		return map;
+	}
+
+	public static Map<String, Map<String, Double>> getIncomeAmount(
+					List<Loading> loadingList, List<Shift> shiftList) {
+		Map<String, Double> grossProfitMap = new TreeMap<>();
+		Double grossProfitBig = null;
+		Double grossProfitSmall = null;
+		for (Loading loading : loadingList) {
+			grossProfitBig = new Double(0);
+			grossProfitSmall = new Double(0);
+			/** 日期 */
+			String workDate = loading.getWorkDate();
+
+			/** 数量（大车） */
+			Double amountBig = loading.getAmountBig();
+
+			/** 数量（小车） */
+			Double amountSmall = loading.getAmountSmall();
+
+			grossProfitBig = grossProfitMap.get(
+							workDate + "_" + Constants.CATEGORY_LOADING_BIG_SHORT);
+			if (null == grossProfitBig) {
+				grossProfitBig = new Double(0);
+			}
+			grossProfitBig += amountBig;
+			grossProfitMap.put(
+							workDate + "_" + Constants.CATEGORY_LOADING_BIG_SHORT,
+							grossProfitBig);
+
+			grossProfitSmall = grossProfitMap.get(workDate + "_"
+							+ Constants.CATEGORY_LOADING_SMALL_SHORT);
+			if (null == grossProfitSmall) {
+				grossProfitSmall = new Double(0);
+			}
+			grossProfitSmall += amountSmall;
+			grossProfitMap.put(
+							workDate + "_" + Constants.CATEGORY_LOADING_SMALL_SHORT,
+							grossProfitSmall);
+		}
+
+		Double grossProfitShift = null;
+		for (Shift shift : shiftList) {
+			grossProfitBig = new Double(0);
+			grossProfitSmall = new Double(0);
+			/** 日期 */
+			String workDate = shift.getWorkDate();
+
+			/** 数量 */
+			Double amount = shift.getAmount();
+
+			grossProfitShift = grossProfitMap.get(
+							workDate + "_" + Constants.CATEGORY_SHIFT_SHORT);
+			if (null == grossProfitShift) {
+				grossProfitShift = new Double(0);
+			}
+			grossProfitShift += amount;
+			grossProfitMap.put(
+							workDate + "_" + Constants.CATEGORY_SHIFT_SHORT,
+							grossProfitShift);
+		}
+
+		Map<String, Map<String, Double>> map = new TreeMap<>();
+		Map<String, Double> amountMap = null;
+		String type = "";
+		for (Map.Entry<String, Double> entry : grossProfitMap.entrySet()) {
+			System.out.println("Key = " + entry.getKey() + ", Value = "
+							+ entry.getValue());
+			String workDateStr = entry.getKey();
+			Double amount = entry.getValue();
+			int index = workDateStr.lastIndexOf("_");
+			if (-1 != index) {
+				type = workDateStr.substring(index + 1);
+				workDateStr = workDateStr.substring(0, index);
+			}
+			amountMap = map.get(workDateStr);
+			if (null == amountMap) {
+				amountMap = new TreeMap<>();
+				amountMap.put(Constants.CATEGORY_LOADING_BIG_SHORT, new Double(0));
+				amountMap.put(Constants.CATEGORY_LOADING_SMALL_SHORT,
+								new Double(0));
+				amountMap.put(Constants.CATEGORY_SHIFT_SHORT, new Double(0));
+			}
+
+			switch (type) {
+			case Constants.CATEGORY_LOADING_BIG_SHORT:
+				amountMap.put(Constants.CATEGORY_LOADING_BIG_SHORT, amount);
+				map.put(workDateStr, amountMap);
+				break;
+			case Constants.CATEGORY_LOADING_SMALL_SHORT:
+				amountMap.put(Constants.CATEGORY_LOADING_SMALL_SHORT, amount);
+				map.put(workDateStr, amountMap);
+				break;
+			case Constants.CATEGORY_SHIFT_SHORT:
+				amountMap.put(Constants.CATEGORY_SHIFT_SHORT, amount);
 				map.put(workDateStr, amountMap);
 				break;
 
@@ -629,6 +824,32 @@ public class ExcavatorService {
 		Map<String, Integer> map = new TreeMap<>();
 		Map<String, Map<String, Double>> grossProfitMap = getIncomeAmount(
 						excavatorList);
+		Integer count = 0;
+		for (Map.Entry<String, Map<String, Double>> entry : grossProfitMap
+						.entrySet()) {
+			System.out.println("Key = " + entry.getKey() + ", Value = "
+							+ entry.getValue());
+			String workday = entry.getKey();
+			int index = workday.lastIndexOf("-");
+			if (-1 != index) {
+				String month = workday.substring(0, index);
+				count = map.get(month);
+				if (null == count) {
+					count = 0;
+				}
+				count += 1;
+				map.put(month, count);
+			}
+		}
+
+		return map;
+	}
+
+	public static Map<String, Integer> getWorkDayAmount(
+					List<Loading> loadingList, List<Shift> shiftList) {
+		Map<String, Integer> map = new TreeMap<>();
+		Map<String, Map<String, Double>> grossProfitMap = getIncomeAmount(
+						loadingList, shiftList);
 		Integer count = 0;
 		for (Map.Entry<String, Map<String, Double>> entry : grossProfitMap
 						.entrySet()) {
@@ -709,8 +930,8 @@ public class ExcavatorService {
 					grossProfit -= expend;
 				}
 
-				if (Constants.CATEGORY_LOAD.equals(category)
-								|| Constants.CATEGORY_STAND_BY
+				if (Constants.CATEGORY_LOADING.equals(category)
+								|| Constants.CATEGORY_SHIFT
 												.equals(category)) {
 					grossProfit += income;
 				}
@@ -742,7 +963,7 @@ public class ExcavatorService {
 		List<Excavator> excavatorList = ExcavatorService.getExcavatorList(path,
 						sheetName);
 		// 台班费
-		String feeType1 = Constants.CATEGORY_STAND_BY;
+		String feeType1 = Constants.CATEGORY_SHIFT;
 		Double standByFee = getStandByFeeByLocation(locationParam,
 						excavatorList);
 		if (0 < standByFee) {
@@ -757,7 +978,7 @@ public class ExcavatorService {
 		}
 
 		// 装车
-		String feeType3 = Constants.CATEGORY_LOAD;
+		String feeType3 = Constants.CATEGORY_LOADING;
 		Double grossProfit = getGrossProfitByLocation(locationParam,
 						excavatorList);
 		settlingChargeMap.put(feeType3, grossProfit);
@@ -800,7 +1021,7 @@ public class ExcavatorService {
 		// System.out.println(decimalFormat.format(number)); //12
 
 		// 台班费
-		String feeType1 = Constants.CATEGORY_STAND_BY;
+		String feeType1 = Constants.CATEGORY_SHIFT;
 		Double standByFee = getStandByFeeAmountByLocation(locationParam,
 						excavatorList);
 		if (0 < standByFee) {
@@ -817,15 +1038,15 @@ public class ExcavatorService {
 		}
 
 		// 装车
-		String feeType3 = Constants.CATEGORY_LOAD;
+		String feeType3 = Constants.CATEGORY_LOADING;
 		Double[] grossProfitArray = getLoadAmountByLocation(locationParam,
 						excavatorList);
 		if (0 < grossProfitArray[1]) {
 			settlingChargeMap.put(
-							feeType3 + "(" + Constants.CATEGORY_LOAD_BIG + ")",
+							feeType3 + "(" + Constants.CATEGORY_LOADING_BIG + ")",
 							decimalFormat.format(grossProfitArray[0]));
 			settlingChargeMap.put(
-							feeType3 + "(" + Constants.CATEGORY_LOAD_SMALL
+							feeType3 + "(" + Constants.CATEGORY_LOADING_SMALL
 											+ ")",
 							decimalFormat.format(grossProfitArray[1]));
 		} else {
@@ -871,8 +1092,8 @@ public class ExcavatorService {
 					grossProfit -= expend;
 				}
 
-				if (Constants.CATEGORY_LOAD.equals(category)
-								|| Constants.CATEGORY_STAND_BY
+				if (Constants.CATEGORY_LOADING.equals(category)
+								|| Constants.CATEGORY_SHIFT
 												.equals(category)) {
 					grossProfit += income;
 					workDaySet.add(workDate);

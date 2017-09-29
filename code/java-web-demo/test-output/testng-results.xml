@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="34" total="35" passed="1">
+<testng-results skipped="0" failed="0" ignored="42" total="43" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="1363" started-at="2017-09-22T09:45:03Z" finished-at="2017-09-22T09:45:04Z">
+  <suite name="Default suite" duration-ms="1731" started-at="2017-09-29T03:41:22Z" finished-at="2017-09-29T03:41:23Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="1363" started-at="2017-09-22T09:45:03Z" finished-at="2017-09-22T09:45:04Z">
+    <test name="Default test" duration-ms="1731" started-at="2017-09-29T03:41:22Z" finished-at="2017-09-29T03:41:23Z">
       <class name="com.coderdream.excavator.service.ExcavatorServiceTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.coderdream.excavator.service.ExcavatorServiceTest@57855c9a]" name="setUp" is-config="true" duration-ms="8" started-at="2017-09-22T17:45:03Z" finished-at="2017-09-22T17:45:03Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.coderdream.excavator.service.ExcavatorServiceTest@57855c9a]" name="setUp" is-config="true" duration-ms="9" started-at="2017-09-29T11:41:22Z" finished-at="2017-09-29T11:41:22Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="testGetWorkDayAmount_01()[pri:0, instance:com.coderdream.excavator.service.ExcavatorServiceTest@57855c9a]" name="testGetWorkDayAmount_01" duration-ms="1338" started-at="2017-09-22T17:45:03Z" finished-at="2017-09-22T17:45:04Z">
+        <test-method status="PASS" signature="testGetWorkDayAmount_03()[pri:0, instance:com.coderdream.excavator.service.ExcavatorServiceTest@57855c9a]" name="testGetWorkDayAmount_03" duration-ms="1709" started-at="2017-09-29T11:41:22Z" finished-at="2017-09-29T11:41:23Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testGetWorkDayAmount_01 -->
+        </test-method> <!-- testGetWorkDayAmount_03 -->
       </class> <!-- com.coderdream.excavator.service.ExcavatorServiceTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

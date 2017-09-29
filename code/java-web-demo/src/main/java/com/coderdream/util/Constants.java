@@ -8,38 +8,56 @@ public class Constants {
 
 	public static String DATA_FILE_NAME = "Data11.xlsx";
 
-	public static String EXCAVATOR_FILE_NAME = "挖掘机.20170913.xlsx";
+	public static String EXCAVATOR_FILE_NAME = "挖掘机.20170928.xlsx";
 
 	public static String CATEGORY_OIL_FEE = "加油费";
 
 	public static String CATEGORY_SERVICE = "维修保养";
 
-	public static String CATEGORY_LOAD = "装车";
+	public static String CATEGORY_LOADING = "装车";
 
-	public final static String CATEGORY_LOAD_BIG = "大车";
+	public final static String CATEGORY_LOADING_BIG = "大车";
 
-	public final static String CATEGORY_LOAD_SMALL = "小车";
+	public final static String CATEGORY_LOADING_SMALL = "小车";
 
-	public final static String CATEGORY_STAND_BY = "台班";
+	public final static String CATEGORY_SHIFT = "台班";
 
-	public final static String CATEGORY_LOAD_BIG_SHORT = "A";
+	public final static String CATEGORY_LOADING_BIG_SHORT = "A";
 
-	public final static String CATEGORY_LOAD_SMALL_SHORT = "B";
+	public final static String CATEGORY_LOADING_SMALL_SHORT = "B";
 
-	public final static String CATEGORY_STAND_BY_SHORT = "C";
+	public final static String CATEGORY_SHIFT_SHORT = "C";
 
 	public static String CATEGORY_START_FEE = "进场费";
 
 	public static String CATEGORY_SETTLING_CHARGE = "结余";
 
 	/** 四化建 */
-	public static String LOCATION_ONE = "四化建";
+	public static String LOCATION_SHI_HUA_JIAN = "四化建";
+
+	/** 四化建装车 */
+	public static String LOCATION_SHI_HUA_JIAN_LOADING = "四化建装车";
+
+	/** 四化建台班 */
+	public static String LOCATION_SHI_HUA_JIAN_SHIFT = "四化建台班";
 
 	/** 步行街 */
-	public static String LOCATION_TWO = "步行街";
+	public static String LOCATION_WALK_STREET = "步行街";
+	
+	/** 步行街装车 */
+	public static String LOCATION_WALK_STREET_LOADING = "步行街装车";
+
+	/** 步行街台班 */
+	public static String LOCATION_WALK_STREET_SHIFT = "步行街台班";
 
 	/** 南湖公园 */
-	public static String LOCATION_THREE = "南湖公园";
+	public static String LOCATION_NANHU_PARK = "南湖公园";
+	
+	/** 南湖公园装车 */
+	public static String LOCATION_NANHU_PARK_LOADING = "南湖公园装车";
+
+	/** 南湖公园台班 */
+	public static String LOCATION_NANHU_PARK_SHIFT = "南湖公园台班";
 
 	public static String DECIMAL_FORMAT = "###################.###########";
 
