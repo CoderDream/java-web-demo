@@ -9,6 +9,9 @@ public class Shift {
 
 	/** 数量 */
 	private Double amount;
+	
+	/** 工地 */
+	private String location;
 
 	public String getWorkDate() {
 		return workDate;
@@ -32,6 +35,14 @@ public class Shift {
 
 	public void setAmount(Double amount) {
 		this.amount = amount;
+	}
+	
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	@Override

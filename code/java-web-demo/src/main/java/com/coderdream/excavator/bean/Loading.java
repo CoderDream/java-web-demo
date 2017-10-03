@@ -12,6 +12,9 @@ public class Loading {
 
 	/** 数量 （小车） */
 	private Double amountSmall;
+	
+	/** 工地 */
+	private String location;
 
 	public String getWorkDate() {
 		return workDate;
@@ -43,6 +46,14 @@ public class Loading {
 
 	public void setAmountSmall(Double amountSmall) {
 		this.amountSmall = amountSmall;
+	}
+	
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	@Override

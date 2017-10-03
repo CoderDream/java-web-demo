@@ -563,20 +563,12 @@ public class ExcavatorServiceTest {
 	public void testGetIncomeAmount_03() {
 		String path = fileFolder + dataFileName;
 		String sheetName1 = Constants.LOCATION_SHI_HUA_JIAN_LOADING;
-		String sheetName2 = Constants.LOCATION_NANHU_PARK_LOADING;
-		String sheetName3 = Constants.LOCATION_WALK_STREET_LOADING;
 		String sheetName4 = Constants.LOCATION_SHI_HUA_JIAN_SHIFT;
-		String sheetName5 = Constants.LOCATION_NANHU_PARK_SHIFT;
-		String sheetName6 = Constants.LOCATION_WALK_STREET_SHIFT;
 
 		List<Loading> loadingList = new ArrayList<>();
 		loadingList.addAll(ExcavatorService.getLoadingList(path, sheetName1));
-//		loadingList.addAll(ExcavatorService.getLoadingList(path, sheetName2));
-//		loadingList.addAll(ExcavatorService.getLoadingList(path, sheetName3));
 		List<Shift> shiftList = new ArrayList<>();
 		shiftList.addAll(ExcavatorService.getShiftList(path, sheetName4));
-//		shiftList.addAll(ExcavatorService.getShiftList(path, sheetName5));
-//		shiftList.addAll(ExcavatorService.getShiftList(path, sheetName6));
 		Map<String, Map<String, Double>> grossProfitMap = ExcavatorService
 						.getIncomeAmount(loadingList, shiftList);
 		for (Map.Entry<String, Map<String, Double>> entry : grossProfitMap
@@ -617,12 +609,8 @@ public class ExcavatorServiceTest {
 	@Test
 	public void testGetIncomeAmount_04() {
 		String path = fileFolder + dataFileName;
-		String sheetName1 = Constants.LOCATION_SHI_HUA_JIAN_LOADING;
 		String sheetName2 = Constants.LOCATION_NANHU_PARK_LOADING;
-		String sheetName3 = Constants.LOCATION_WALK_STREET_LOADING;
-		String sheetName4 = Constants.LOCATION_SHI_HUA_JIAN_SHIFT;
 		String sheetName5 = Constants.LOCATION_NANHU_PARK_SHIFT;
-		String sheetName6 = Constants.LOCATION_WALK_STREET_SHIFT;
 
 		List<Loading> loadingList = new ArrayList<>();
 		//loadingList.addAll(ExcavatorService.getLoadingList(path, sheetName1));
@@ -725,7 +713,6 @@ public class ExcavatorServiceTest {
 		shiftList.addAll(ExcavatorService.getShiftList(path, sheetName5));
 		shiftList.addAll(ExcavatorService.getShiftList(path, sheetName6));
 	}
-
 
 	@Test
 	public void testGetWorkDayAmount_01() {
