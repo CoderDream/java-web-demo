@@ -2,25 +2,27 @@ package com.coderdream.util;
 
 public class Constants {
 
-	public static String SIMPLE_DATE_FORMAT = "yyyy-MM-dd";
+	public final static String SIMPLE_DATE_FORMAT = "yyyy-MM-dd";
 
-	public static String TABLE_STRUCTURE_FILE_NAME = "TableStructure.xlsx";
+	public final static String TABLE_STRUCTURE_FILE_NAME = "TableStructure.xlsx";
 
-	public static String DATA_FILE_NAME = "Data11.xlsx";
+	public final static String DATA_FILE_NAME = "Data11.xlsx";
 
-	public static String EXCAVATOR_FILE_NAME = "挖掘机.20170928.xlsx";
+	public final static String EXCAVATOR_FILE_NAME = "挖掘机.20171002.xlsx";
 
-	public static String CATEGORY_OIL_FEE = "加油费";
+	public final static String CATEGORY_OIL_FEE = "加油费";
 
-	public static String CATEGORY_SERVICE = "维修保养";
+	public final static String CATEGORY_SERVICE = "维修保养";
 
-	public static String CATEGORY_LOADING = "装车";
+	public final static String CATEGORY_LOADING = "装车";
 
 	public final static String CATEGORY_LOADING_BIG = "大车";
 
 	public final static String CATEGORY_LOADING_SMALL = "小车";
 
 	public final static String CATEGORY_SHIFT = "台班";
+
+	public final static String CATEGORY_TOTAL = "T";
 
 	public final static String CATEGORY_LOADING_BIG_SHORT = "A";
 

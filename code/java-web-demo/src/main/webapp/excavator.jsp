@@ -14,8 +14,6 @@
 .top-offset {
 	margin: 5px 0;
 }
-</style>
-<style type="text/css">
 .row div {
 	
 }
