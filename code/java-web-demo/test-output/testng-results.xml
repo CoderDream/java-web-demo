@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="0" passed="0">
+<testng-results skipped="0" failed="0" ignored="15" total="16" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="10" started-at="2018-05-08T09:10:49Z" finished-at="2018-05-08T09:10:49Z">
+  <suite name="Default suite" duration-ms="144113" started-at="2018-06-01T01:02:48Z" finished-at="2018-06-01T01:05:12Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="10" started-at="2018-05-08T09:10:49Z" finished-at="2018-05-08T09:10:49Z">
+    <test name="Default test" duration-ms="144113" started-at="2018-06-01T01:02:48Z" finished-at="2018-06-01T01:05:12Z">
+      <class name="com.pdrc.IdleServiceTest">
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:com.pdrc.IdleServiceTest@e25b2fe]" name="beforeClass" is-config="true" duration-ms="7" started-at="2018-06-01T09:02:48Z" finished-at="2018-06-01T09:02:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.pdrc.IdleServiceTest@e25b2fe]" name="beforeMethod" is-config="true" duration-ms="1" started-at="2018-06-01T09:02:48Z" finished-at="2018-06-01T09:02:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="getTmMemberInfoList_01()[pri:0, instance:com.pdrc.IdleServiceTest@e25b2fe]" name="getTmMemberInfoList_01" duration-ms="144090" started-at="2018-06-01T09:02:48Z" finished-at="2018-06-01T09:05:12Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getTmMemberInfoList_01 -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.pdrc.IdleServiceTest@e25b2fe]" name="afterMethod" is-config="true" duration-ms="1" started-at="2018-06-01T09:05:12Z" finished-at="2018-06-01T09:05:12Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:com.pdrc.IdleServiceTest@e25b2fe]" name="afterClass" is-config="true" duration-ms="0" started-at="2018-06-01T09:05:12Z" finished-at="2018-06-01T09:05:12Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+      </class> <!-- com.pdrc.IdleServiceTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

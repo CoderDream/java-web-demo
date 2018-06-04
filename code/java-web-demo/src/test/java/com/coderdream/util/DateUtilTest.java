@@ -6,9 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Before;
-import org.junit.Test;
-
-import com.coderdream.util.DateUtil;
+import org.testng.annotations.Test;
 
 public class DateUtilTest {
 
@@ -76,77 +74,88 @@ public class DateUtilTest {
 	public void testGetMonthBetween_01() {
 		String beginDateString1 = "2017-01-01";
 		String endDateString1 = "2017-03-05";
-		System.out.println(DateUtil.getMonthBetween(beginDateString1, endDateString1));
+		System.out.println(
+				DateUtil.getMonthBetween(beginDateString1, endDateString1));
 	}
 
 	@Test
 	public void testGetMonthBetween_02() {
 		String beginDateString2 = "2016-11-11";
 		String endDateString2 = "2017-05-05";
-		System.out.println(DateUtil.getMonthBetween(beginDateString2, endDateString2));
+		System.out.println(
+				DateUtil.getMonthBetween(beginDateString2, endDateString2));
 	}
 
 	@Test
 	public void testGetMonthBetween_03() {
 		String beginDateString3 = "2017-02-15";
 		String endDateString3 = "2017-10-21";
-		System.out.println(DateUtil.getMonthBetween(beginDateString3, endDateString3));
+		System.out.println(
+				DateUtil.getMonthBetween(beginDateString3, endDateString3));
 	}
 
 	@Test
 	public void testGetMonthBetweenParticipate_01() {
 		String beginDateString = "2017-02-05";
 		String endDateString = "2017-03-06";
-		System.out.println(DateUtil.getMonthBetweenParticipate(beginDateString, endDateString));
+		System.out.println(DateUtil.getMonthBetweenParticipate(beginDateString,
+				endDateString));
 	}
 
 	@Test
 	public void testGetMonthBetweenParticipate_02() {
 		String beginDateString = "2017-02-21";
 		String endDateString = "2017-04-05";
-		System.out.println(DateUtil.getMonthBetweenParticipate(beginDateString, endDateString));
+		System.out.println(DateUtil.getMonthBetweenParticipate(beginDateString,
+				endDateString));
 	}
 
 	@Test
 	public void testGetMonthBetweenParticipate_03() {
 		String beginDateString = "2017-02-05";
 		String endDateString = "2017-02-06";
-		System.out.println(DateUtil.getMonthBetweenParticipate(beginDateString, endDateString));
+		System.out.println(DateUtil.getMonthBetweenParticipate(beginDateString,
+				endDateString));
 	}
 
 	@Test
 	public void testGetMonthBetweenParticipate_04() {
 		String beginDateString = "2017-04-21";
 		String endDateString = "2017-06-15";
-		System.out.println(DateUtil.getMonthBetweenParticipate(beginDateString, endDateString));
+		System.out.println(DateUtil.getMonthBetweenParticipate(beginDateString,
+				endDateString));
 	}
 
 	@Test
 	public void testGetMonthBetweenParticipate_05() {
 		String beginDateString = "2017-01-21";
 		String endDateString = "2017-06-15";
-		System.out.println(DateUtil.getMonthBetweenParticipate(beginDateString, endDateString));
+		System.out.println(DateUtil.getMonthBetweenParticipate(beginDateString,
+				endDateString));
 	}
 
 	@Test
 	public void testGetMonthBetweenParticipate_06() {
 		String beginDateString = "2017-01-21";
 		String endDateString = "2017-01-31";
-		System.out.println(DateUtil.getMonthBetweenParticipate(beginDateString, endDateString));
+		System.out.println(DateUtil.getMonthBetweenParticipate(beginDateString,
+				endDateString));
 	}
 
 	@Test
 	public void testGetMonthBetweenParticipate_07() {
 		String beginDateString = "2017-01-21";
 		String endDateString = "2017-01-21";
-		System.out.println(DateUtil.getMonthBetweenParticipate(beginDateString, endDateString));
+		System.out.println(DateUtil.getMonthBetweenParticipate(beginDateString,
+				endDateString));
 	}
 
 	@Test
 	public void testGetMonthBetweenParticipate_08() {
 		String beginDateString = "2017-01-01";
 		String endDateString = "2017-02-28";
-		List<Double> result = DateUtil.getMonthBetweenParticipate(beginDateString, endDateString);
+		List<Double> result = DateUtil
+				.getMonthBetweenParticipate(beginDateString, endDateString);
 		System.out.println(result);
 		Double expectValue = new Double(1.0);
 		assertEquals(expectValue, result.get(0));
@@ -157,8 +166,9 @@ public class DateUtilTest {
 	public void testGetMonthBetweenParticipateWithMonth_01() {
 		String beginDateString = "2017-01-01";
 		String endDateString = "2017-02-28";
-		Map<String, Double> participateMap = DateUtil.getMonthBetweenParticipateWithMonth(beginDateString,
-				endDateString);
+		Map<String, Double> participateMap = DateUtil
+				.getMonthBetweenParticipateWithMonth(beginDateString,
+						endDateString);
 		for (String month : participateMap.keySet()) {
 			Double participateValue = participateMap.get(month);
 			System.out.println(month + "\t" + participateValue);
@@ -169,8 +179,9 @@ public class DateUtilTest {
 	public void testGetMonthBetweenParticipateWithMonth_02() {
 		String beginDateString = "2017-01-21";
 		String endDateString = "2017-06-15";
-		Map<String, Double> participateMap = DateUtil.getMonthBetweenParticipateWithMonth(beginDateString,
-				endDateString);
+		Map<String, Double> participateMap = DateUtil
+				.getMonthBetweenParticipateWithMonth(beginDateString,
+						endDateString);
 		for (String month : participateMap.keySet()) {
 			Double participateValue = participateMap.get(month);
 			System.out.println(month + "\t" + participateValue);
@@ -217,7 +228,7 @@ public class DateUtilTest {
 		boolean expectValue = false;
 		assertEquals(expectValue, monthEnd);
 	}
-	
+
 	@Test
 	public void testBeforeDate_02() {
 		String beginDateString = "2017-12-22";
@@ -226,45 +237,125 @@ public class DateUtilTest {
 		boolean expectValue = false;
 		assertEquals(expectValue, monthEnd);
 	}
-	
+
 	@Test
 	public void testBeforeDate_03() {
 		String beginDateString = "2017-12-21";
 		String endDateString = "2017-12-22";
-		boolean compareResult = DateUtil.beforeDate(beginDateString, endDateString);
+		boolean compareResult = DateUtil.beforeDate(beginDateString,
+				endDateString);
 		boolean expectValue = true;
 		assertEquals(expectValue, compareResult);
 	}
-	
+
 	@Test
 	public void testBetweenTwoDate_01() {
 		String dateString = "2017-12-01";
 		String beginDateString = "2017-12-01";
 		String endDateString = "2017-12-22";
-		boolean compareResult = DateUtil.betweenTwoDate(dateString, beginDateString, endDateString);
+		boolean compareResult = DateUtil.betweenTwoDate(dateString,
+				beginDateString, endDateString);
 		boolean expectValue = true;
 		assertEquals(expectValue, compareResult);
 	}
-	
+
 	@Test
 	public void testBetweenTwoDate_02() {
 		String dateString = "2017-12-22";
 		String beginDateString = "2017-12-01";
 		String endDateString = "2017-12-22";
-		boolean compareResult = DateUtil.betweenTwoDate(dateString, beginDateString, endDateString);
+		boolean compareResult = DateUtil.betweenTwoDate(dateString,
+				beginDateString, endDateString);
 		boolean expectValue = true;
 		assertEquals(expectValue, compareResult);
 	}
-	
+
 	@Test
 	public void testBetweenTwoDate_03() {
 		String dateString = "2017-11-30";
 		String beginDateString = "2017-12-01";
 		String endDateString = "2017-12-22";
-		boolean compareResult = DateUtil.betweenTwoDate(dateString, beginDateString, endDateString);
+		boolean compareResult = DateUtil.betweenTwoDate(dateString,
+				beginDateString, endDateString);
 		boolean expectValue = false;
 		assertEquals(expectValue, compareResult);
 	}
+
+	@Test
+	public void getDayBetween_01() {
+		String beginDateString = "2017-12-01";
+		String endDateString = "2017-12-22";
+		List<String> result = DateUtil.getDayBetween(beginDateString,
+				endDateString);
+		for (String string : result) {
+			System.out.println(string);
+		}
+	}
 	
+	@Test
+	public void getDayBetweenYear2017_01() {
+		String beginDateString = "2017-01-02";
+		String endDateString = "2017-01-05";
+		List<String> result = DateUtil.getDayBetweenYear2017(beginDateString,
+				endDateString);
+		for (String string : result) {
+			System.out.println(string);
+		}
+	}
+	
+	@Test
+	public void getDayBetweenYear2017_02() {
+		String beginDateString = "2016-12-01";
+		String endDateString = "2017-01-05";
+		List<String> result = DateUtil.getDayBetweenYear2017(beginDateString,
+				endDateString);
+		for (String string : result) {
+			System.out.println(string);
+		}
+	}
+	
+	@Test
+	public void getDayBetweenYear2017_03() {
+		String beginDateString = "2017-12-21";
+		String endDateString = "2018-01-02";
+		List<String> result = DateUtil.getDayBetweenYear2017(beginDateString,
+				endDateString);
+		for (String string : result) {
+			System.out.println(string);
+		}
+	}
+	
+	@Test
+	public void getDayBetweenYear2017_04() {
+		String beginDateString = "2018-01-01";
+		String endDateString = "2018-01-02";
+		List<String> result = DateUtil.getDayBetweenYear2017(beginDateString,
+				endDateString);
+		for (String string : result) {
+			System.out.println(string);
+		}
+	}
+	
+	@Test
+	public void getDayBetweenYear2017_05() {
+		String beginDateString = "2016-01-01";
+		String endDateString = "2016-01-02";
+		List<String> result = DateUtil.getDayBetweenYear2017(beginDateString,
+				endDateString);
+		for (String string : result) {
+			System.out.println(string);
+		}
+	}
+	
+	@Test
+	public void getDayBetweenYear2017_06() {
+		String beginDateString = "2017-02-14";
+		String endDateString = "2017-02-14";
+		List<String> result = DateUtil.getDayBetweenYear2017(beginDateString,
+				endDateString);
+		for (String string : result) {
+			System.out.println(string);
+		}
+	}
 
 }

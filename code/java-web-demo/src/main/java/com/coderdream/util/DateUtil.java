@@ -20,7 +20,8 @@ public class DateUtil {
 	public static boolean beforeToday(String beginDateString) {
 		Date date = new Date();
 
-		SimpleDateFormat df = new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT);
+		SimpleDateFormat df = new SimpleDateFormat(
+				Constants.SIMPLE_DATE_FORMAT);
 		try {
 			date = df.parse(beginDateString);
 			// System.out.println(date);
@@ -42,11 +43,13 @@ public class DateUtil {
 	 * @param beginDateString
 	 * @return
 	 */
-	public static boolean beforeDate(String beginDateString, String endDateString) {
+	public static boolean beforeDate(String beginDateString,
+			String endDateString) {
 		Date beginDateDate = new Date();
 		Date endDateDate = new Date();// 取时间
 
-		SimpleDateFormat df = new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT);
+		SimpleDateFormat df = new SimpleDateFormat(
+				Constants.SIMPLE_DATE_FORMAT);
 		try {
 			beginDateDate = df.parse(beginDateString);
 			endDateDate = df.parse(endDateString);
@@ -69,11 +72,13 @@ public class DateUtil {
 	 * @param secondDateString
 	 * @return
 	 */
-	public static boolean compareTwoDate(String oneDateString, String secondDateString) {
+	public static boolean compareTwoDate(String oneDateString,
+			String secondDateString) {
 		Date dateOne = new Date();
 		Date dateTwo = new Date();// 取时间
 
-		SimpleDateFormat df = new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT);
+		SimpleDateFormat df = new SimpleDateFormat(
+				Constants.SIMPLE_DATE_FORMAT);
 		try {
 			dateOne = df.parse(oneDateString);
 			dateTwo = df.parse(secondDateString);
@@ -95,12 +100,14 @@ public class DateUtil {
 	 * @param endDateString
 	 * @return
 	 */
-	public static boolean betweenTwoDate(String dateString, String beginDateString, String endDateString) {
+	public static boolean betweenTwoDate(String dateString,
+			String beginDateString, String endDateString) {
 		Date dateMiddle = new Date();
 		Date dateOne = new Date();
 		Date dateTwo = new Date();// 取时间
 
-		SimpleDateFormat df = new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT);
+		SimpleDateFormat df = new SimpleDateFormat(
+				Constants.SIMPLE_DATE_FORMAT);
 		try {
 			dateMiddle = df.parse(dateString);
 			dateOne = df.parse(beginDateString);
@@ -120,7 +127,8 @@ public class DateUtil {
 		Calendar calendarMiddle = new GregorianCalendar();
 		calendarMiddle.setTime(dateMiddle);
 
-		return calendarMiddle.after(calendarOne) && calendarMiddle.before(calendarSecond);
+		return calendarMiddle.after(calendarOne)
+				&& calendarMiddle.before(calendarSecond);
 	}
 
 	/**
@@ -131,7 +139,8 @@ public class DateUtil {
 	public static String getNextDate(String dateString, Integer count) {
 		Date dateOne = new Date();
 
-		SimpleDateFormat df = new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT);
+		SimpleDateFormat df = new SimpleDateFormat(
+				Constants.SIMPLE_DATE_FORMAT);
 		try {
 			dateOne = df.parse(dateString);
 		} catch (ParseException e) {
@@ -152,7 +161,8 @@ public class DateUtil {
 	 */
 	public static List<String> getMonthBetween(String minDate, String maxDate) {
 		List<String> result = new ArrayList<String>();
-		SimpleDateFormat sdf = new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT);// 格式化为年月
+		SimpleDateFormat sdf = new SimpleDateFormat(
+				Constants.SIMPLE_DATE_FORMAT);// 格式化为年月
 
 		Calendar min = Calendar.getInstance();
 		Calendar max = Calendar.getInstance();
@@ -181,12 +191,118 @@ public class DateUtil {
 	}
 
 	/**
+	 * @param minDate
+	 * @param maxDate
+	 * @return
+	 */
+	public static List<String> getDayBetween(String minDate, String maxDate) {
+		List<String> result = new ArrayList<String>();
+		SimpleDateFormat sdf = new SimpleDateFormat(
+				Constants.SIMPLE_DATE_FORMAT);// 格式化为年月
+
+		Calendar min = Calendar.getInstance();
+		Calendar max = Calendar.getInstance();
+
+		try {
+			min.setTime(sdf.parse(minDate));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			max.setTime(sdf.parse(maxDate));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		Calendar curr = min;
+		while (curr.before(max)) {
+			result.add(sdf.format(curr.getTime()));
+			curr.add(Calendar.DAY_OF_MONTH, 1);
+		}
+
+		return result;
+	}
+
+	/**
+	 * @param minDate
+	 * @param maxDate
+	 * @return
+	 */
+	public static List<String> getDayBetween(Calendar min, Calendar max) {
+		List<String> result = new ArrayList<String>();
+		SimpleDateFormat sdf = new SimpleDateFormat(
+				Constants.SIMPLE_DATE_FORMAT);// 格式化为年月
+		Calendar curr = min;
+		while (curr.before(max)) {
+			result.add(sdf.format(curr.getTime()));
+			curr.add(Calendar.DAY_OF_MONTH, 1);
+		}
+		result.add(sdf.format(max.getTime()));
+
+		return result;
+	}
+
+	/**
+	 * @param minDate
+	 * @param maxDate
+	 * @return
+	 */
+	public static List<String> getDayBetweenYear2017(String minDate,
+			String maxDate) {
+		List<String> result = new ArrayList<String>();
+		SimpleDateFormat sdf = new SimpleDateFormat(
+				Constants.SIMPLE_DATE_FORMAT);// 格式化为年月
+
+		String minDay = "2017-01-01";
+		String maxDay = "2017-12-31";
+		Calendar minDayCal = Calendar.getInstance();
+		Calendar maxDayCal = Calendar.getInstance();
+		Calendar min = Calendar.getInstance();
+		Calendar max = Calendar.getInstance();
+
+		try {
+			minDayCal.setTime(sdf.parse(minDay));
+			maxDayCal.setTime(sdf.parse(maxDay));
+
+			min.setTime(sdf.parse(minDate));
+			max.setTime(sdf.parse(maxDate));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		if (min.before(minDayCal)) {
+			min = minDayCal;
+		}
+
+		if (maxDayCal.before(max)) {
+			max = maxDayCal;
+		}
+
+		if (min.equals(max)) {
+			//System.out.println("2");
+			result.add(sdf.format(min.getTime()));
+			return result;
+		}
+		
+		if (!min.before(max)) {
+			//System.out.println("2");
+			return result;
+		}
+
+		result = getDayBetween(min, max);
+
+		return result;
+	}
+
+	/**
 	 * @param dateStr
 	 * @return
 	 */
 	public static String getMonthEnd(String dateStr) {
 		String result = "";
-		SimpleDateFormat sdf = new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT);// 格式化为年月
+		SimpleDateFormat sdf = new SimpleDateFormat(
+				Constants.SIMPLE_DATE_FORMAT);// 格式化为年月
 
 		Calendar min = Calendar.getInstance();
 
@@ -209,9 +325,11 @@ public class DateUtil {
 	 * @param endDate
 	 * @return
 	 */
-	public static List<Double> getMonthBetweenParticipate(String beginDate, String endDate) {
+	public static List<Double> getMonthBetweenParticipate(String beginDate,
+			String endDate) {
 		List<Double> participateList = new ArrayList<Double>();
-		SimpleDateFormat sdf = new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT);// 格式化为年月
+		SimpleDateFormat sdf = new SimpleDateFormat(
+				Constants.SIMPLE_DATE_FORMAT);// 格式化为年月
 
 		Calendar beginCal = Calendar.getInstance();
 		Calendar endCal = Calendar.getInstance();
@@ -228,7 +346,8 @@ public class DateUtil {
 				nextMonth.setTime(sdf.parse(string));
 				nextMonth.add(Calendar.MONTH, 1);
 				// 获取当月天数
-				int monthRange = getDateRangeExcludeEnd(currentMonth, nextMonth);
+				int monthRange = getDateRangeExcludeEnd(currentMonth,
+						nextMonth);
 				// 获取跨度，如果endDate大于等于下月第一天
 				//
 				boolean beginDateFlag = beginCal.after(currentMonth);
@@ -245,7 +364,8 @@ public class DateUtil {
 					if (beginDateFlag) {
 						dayRange = getDateRangeExcludeEnd(beginCal, nextMonth);
 					} else {
-						dayRange = getDateRangeExcludeEnd(currentMonth, nextMonth); // DONE
+						dayRange = getDateRangeExcludeEnd(currentMonth,
+								nextMonth); // DONE
 					}
 				}
 				Double dayRangeDouble = Double.valueOf(dayRange);
@@ -265,9 +385,11 @@ public class DateUtil {
 	 * @param endDate
 	 * @return
 	 */
-	public static Map<String, Double> getMonthBetweenParticipateWithMonth(String beginDate, String endDate) {
+	public static Map<String, Double> getMonthBetweenParticipateWithMonth(
+			String beginDate, String endDate) {
 		Map<String, Double> participateMap = new TreeMap<String, Double>();
-		SimpleDateFormat sdf = new SimpleDateFormat(Constants.SIMPLE_DATE_FORMAT);// 格式化为年月
+		SimpleDateFormat sdf = new SimpleDateFormat(
+				Constants.SIMPLE_DATE_FORMAT);// 格式化为年月
 
 		Calendar beginCal = Calendar.getInstance();
 		Calendar endCal = Calendar.getInstance();
@@ -284,7 +406,8 @@ public class DateUtil {
 				nextMonth.setTime(sdf.parse(string));
 				nextMonth.add(Calendar.MONTH, 1);
 				// 获取当月天数
-				int monthRange = getDateRangeExcludeEnd(currentMonth, nextMonth);
+				int monthRange = getDateRangeExcludeEnd(currentMonth,
+						nextMonth);
 				// 获取跨度，如果endDate大于等于下月第一天
 				//
 				boolean beginDateFlag = beginCal.after(currentMonth);
@@ -301,7 +424,8 @@ public class DateUtil {
 					if (beginDateFlag) {
 						dayRange = getDateRangeExcludeEnd(beginCal, nextMonth);
 					} else {
-						dayRange = getDateRangeExcludeEnd(currentMonth, nextMonth); // DONE
+						dayRange = getDateRangeExcludeEnd(currentMonth,
+								nextMonth); // DONE
 					}
 				}
 				Double dayRangeDouble = Double.valueOf(dayRange);
@@ -320,10 +444,12 @@ public class DateUtil {
 	 * @param endDate
 	 * @return
 	 */
-	public static Double getMonthBetweenParticipateSum(String beginDate, String endDate) {
+	public static Double getMonthBetweenParticipateSum(String beginDate,
+			String endDate) {
 		Double participateSum = new Double(0);
 
-		List<Double> participateList = DateUtil.getMonthBetweenParticipate(beginDate, endDate);
+		List<Double> participateList = DateUtil
+				.getMonthBetweenParticipate(beginDate, endDate);
 		for (Double participateDouble : participateList) {
 			participateSum += participateDouble;
 		}
@@ -355,7 +481,8 @@ public class DateUtil {
 		caled.set(Calendar.MINUTE, 0);
 		caled.set(Calendar.SECOND, 0);
 		// 得到两个日期相差的天数
-		int days = ((int) (caled.getTime().getTime() / 1000) - (int) (calst.getTime().getTime() / 1000)) / 3600 / 24;
+		int days = ((int) (caled.getTime().getTime() / 1000)
+				- (int) (calst.getTime().getTime() / 1000)) / 3600 / 24;
 
 		return days + 1;
 	}
@@ -374,8 +501,8 @@ public class DateUtil {
 		endCal.set(Calendar.MINUTE, 0);
 		endCal.set(Calendar.SECOND, 0);
 		// 得到两个日期相差的天数
-		int days = ((int) (endCal.getTime().getTime() / 1000) - (int) (beginCal.getTime().getTime() / 1000)) / 3600
-				/ 24;
+		int days = ((int) (endCal.getTime().getTime() / 1000)
+				- (int) (beginCal.getTime().getTime() / 1000)) / 3600 / 24;
 
 		return days + 1;
 	}
@@ -404,7 +531,8 @@ public class DateUtil {
 		caled.set(Calendar.MINUTE, 0);
 		caled.set(Calendar.SECOND, 0);
 		// 得到两个日期相差的天数
-		int days = ((int) (caled.getTime().getTime() / 1000) - (int) (calst.getTime().getTime() / 1000)) / 3600 / 24;
+		int days = ((int) (caled.getTime().getTime() / 1000)
+				- (int) (calst.getTime().getTime() / 1000)) / 3600 / 24;
 
 		return days;
 	}
@@ -423,7 +551,8 @@ public class DateUtil {
 		caled.set(Calendar.MINUTE, 0);
 		caled.set(Calendar.SECOND, 0);
 		// 得到两个日期相差的天数
-		int days = ((int) (caled.getTime().getTime() / 1000) - (int) (calst.getTime().getTime() / 1000)) / 3600 / 24;
+		int days = ((int) (caled.getTime().getTime() / 1000)
+				- (int) (calst.getTime().getTime() / 1000)) / 3600 / 24;
 
 		return days;
 	}
@@ -452,8 +581,11 @@ public class DateUtil {
 		String endDateString2 = "2017-05-05";
 		String beginDateString3 = "2017-02-15";
 		String endDateString3 = "2017-10-21";
-		System.out.println(DateUtil.getMonthBetween(beginDateString1, endDateString1));
-		System.out.println(DateUtil.getMonthBetween(beginDateString2, endDateString2));
-		System.out.println(DateUtil.getMonthBetween(beginDateString3, endDateString3));
+		System.out.println(
+				DateUtil.getMonthBetween(beginDateString1, endDateString1));
+		System.out.println(
+				DateUtil.getMonthBetween(beginDateString2, endDateString2));
+		System.out.println(
+				DateUtil.getMonthBetween(beginDateString3, endDateString3));
 	}
 }
